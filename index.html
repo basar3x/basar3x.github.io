@@ -1,636 +1,727 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BASA.R3X | Tu Professor</title>
-    
-    <!-- Meta Tags Profesionales -->
-    <meta name="description" content="BASA.R3X. Tu Professor. Fusionando el Rock con el pulso urbano desde la Calle Larga, Cuenca, Ecuador.">
-    <meta property="og:title" content="BASA.R3X | Tu Professor">
-    <meta property="og:description" content="Escribir sin miedo a la funa y hacerlo sonar impecable. Teacher y gymrat.">
-    <meta property="og:image" content="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg">
-    <meta property="og:type" content="website">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070707">
+  <meta name="description" content="BASA.R3X — Tu Professor. Rock, Trap, Drill y Reggaetón desde Cuenca, Ecuador.">
+  <meta property="og:title" content="BASA.R3X | Tu Professor">
+  <meta property="og:description" content="BASA.R3X — Tu Professor. Música y universo visual desde Cuenca, Ecuador.">
+  <meta property="og:image" content="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg">
+  <meta property="og:type" content="website">
+  <title>BASA.R3X | Tu Professor</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Cinzel y Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        lawRed: '#990000',
-                        lawDark: '#080808',
-                        lawWhite: '#F4F4F4',
-                    },
-                    fontFamily: {
-                        elegant: ['Cinzel', 'serif'],
-                        ux: ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    @font-face{font-family:Geist;src:url("https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+    :root{
+      --ink:#f3f0eb;--muted:#aaa29a;--black:#070707;--black-2:#0d0d0e;
+      --blood:#a40812;--blood-hi:#e21b2b;--amber:#e8a04a;
+      --line:rgba(243,240,235,.14);
+      --pad:clamp(1rem,3.8vw,4.5rem);
+      --section:clamp(4.5rem,9vw,8rem);
+      --ease:cubic-bezier(.16,1,.3,1);--radius-sm:10px;--radius:14px;--radius-lg:18px;
+      --serif:"Cormorant Garamond",Georgia,serif;
+      --glass:rgba(255,255,255,.025);
+      --glass-line:rgba(255,255,255,.09);
+    }
+    *{box-sizing:border-box}
+    html{background:var(--black);scrollbar-color:var(--blood) #111;scrollbar-width:thin}
+    html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
+    body{margin:0;background:var(--black);color:var(--ink);font-family:Geist,Arial,sans-serif;line-height:1.5;overflow-x:hidden}
+    body.menu-open,body.cart-open{overflow:hidden}
+    ::selection{background:var(--blood);color:#fff}
+    ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#111}::-webkit-scrollbar-thumb{background:var(--blood)}
+    a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{color:inherit}
+    img{display:block;max-width:100%}figure{margin:0}
+    :focus-visible{outline:2px solid var(--blood-hi);outline-offset:5px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .shell{width:min(100% - (var(--pad) * 2),1440px);margin-inline:auto}
+    .section{position:relative;padding-block:var(--section);z-index:2}
+    .eyeline{max-width:70ch;color:var(--muted);font-size:clamp(.92rem,1.25vw,1.08rem)}
+    .section-title{max-width:12ch;margin:0;font-size:clamp(3rem,8vw,6rem);line-height:.88;letter-spacing:-.04em;text-transform:uppercase;text-wrap:balance}
+    .section-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:clamp(1.5rem,5vw,5rem);align-items:end;margin-bottom:clamp(2rem,5vw,4rem)}
+    .rule{border-top:1px solid var(--line)}
+    .accent{color:var(--blood-hi)}
+    .button{--bx:0px;--by:0px;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:52px;padding:.9rem 1.35rem;border:1px solid var(--line);border-radius:var(--radius-sm);background:#101011;color:#fff;text-transform:uppercase;letter-spacing:.11em;font-size:.75rem;font-weight:750;transform:translate3d(var(--bx),var(--by),0);transition:border-color .3s ease,background-color .3s ease,color .3s ease;will-change:transform}
+    .button:hover{border-color:var(--blood-hi);background:#171111}.button.primary{background:var(--blood);border-color:var(--blood);color:#fff}.button.primary:hover{background:var(--blood-hi)}
+    .button[disabled]{opacity:.4}
+    .icon-button{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:var(--radius-sm);background:#0e0e0f;transition:border-color .25s,background-color .25s}
+    .icon-button:hover{border-color:var(--blood-hi)}
+    .icon-button svg,.button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .button svg{width:14px;height:14px}
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px;
-        }
+    /* ---------- ATMÓSFERA ---------- */
+    #webgl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.72}
+    .static-atmosphere{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(55% 46% at 72% 33%,rgba(164,8,18,.28),transparent 70%),radial-gradient(45% 60% at 4% 74%,rgba(95,0,8,.18),transparent 75%),linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72))}
+    .grain{position:fixed;inset:0;z-index:7;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
 
-        body {
-            background-color: #080808;
-            color: #F4F4F4;
-            overflow-x: hidden;
-        }
+    /* ---------- LOADER ---------- */
+    #loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#020202;clip-path:circle(150% at 50% 50%);will-change:clip-path}
+    .loader-inner{width:min(520px,82vw);text-align:center}.loader-ecg{width:100%;overflow:visible}.loader-ecg path{fill:none;stroke:var(--blood-hi);stroke-width:2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 8px rgba(226,27,43,.65));stroke-dasharray:1;stroke-dashoffset:1}
+    .boot-copy{display:flex;justify-content:space-between;margin-top:1.2rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#b8b0a8}.boot-status{color:var(--blood-hi)}
 
-        /* --- OVERLAY DE FONDO MEJORADO --- */
-        .room-bg {
-            position: fixed; top: 50%; left: 50%; width: 100vw; height: 100vh;
-            transform: translate(-50%, -50%); 
-            /* Se aumentó la intensidad del rojo y se ajustó para que sea más visible en Desktop y Móvil */
-            background: radial-gradient(circle at center, rgba(153, 0, 0, 0.18) 0%, rgba(8, 8, 8, 0.95) 60%, #080808 100%);
-            z-index: -1; pointer-events: none;
-        }
+    /* ---------- NAV ---------- */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:80;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;padding:1rem var(--pad);background:linear-gradient(180deg,rgba(7,7,7,.96),rgba(7,7,7,.62));border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px)}
+    .brand{font-weight:850;letter-spacing:-.04em;font-size:1.15rem;color:#fff}
+    .nav-links{display:flex;justify-content:center;gap:clamp(1rem,2.3vw,2.5rem);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.nav-links a{color:#c8c1ba;transition:color .25s ease}.nav-links a:hover{color:#fff}
+    .nav-actions{display:flex;align-items:center;gap:.6rem}.menu-toggle{display:none}
+    .nav-socials,.profile-socials{display:flex;align-items:center;gap:.65rem}.social-icon{display:grid;place-items:center;width:38px;height:38px;border:1px solid transparent;border-radius:50%;color:#d8d1ca;transition:color .25s ease,border-color .25s ease,background-color .25s ease}.social-icon:hover{color:#fff;border-color:var(--blood-hi);background:rgba(164,8,18,.14)}.social-icon svg{width:17px;height:17px;fill:currentColor}
+    .cart-count{position:absolute;top:-5px;right:-5px;display:grid;place-items:center;width:18px;height:18px;background:var(--blood-hi);border-radius:50%;font-size:.6rem;font-weight:800}
 
-        /* Viñeta para los bordes */
-        .vignette-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            box-shadow: inset 0 0 150px rgba(0,0,0,0.9);
-            z-index: -1; pointer-events: none;
-        }
+    /* ---------- HERO ---------- */
+    .hero{min-height:100svh;position:relative;z-index:2;display:grid;place-items:center;padding:clamp(7rem,13vh,10rem) var(--pad) clamp(4rem,8vh,7rem);overflow:hidden;text-align:center}
+    .hero-media{position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,#a40812,#070707 65%)}
+    .hero-media:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,rgba(7,7,7,.05),rgba(7,7,7,.82) 72%),linear-gradient(0deg,#070707 0%,transparent 42%,rgba(7,7,7,.35) 100%);z-index:1}
+    .hero-media img{width:100%;height:100%;object-fit:cover;object-position:56% 25%;filter:sepia(.45) hue-rotate(-28deg) saturate(2.2) contrast(1.12) brightness(.62);transform:scale(1.035);will-change:transform;position:relative;z-index:0}
+    .hero-grid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;width:min(100%,1380px);margin:auto;position:relative;z-index:2}
+    .hero-title{position:relative;margin:0;font-size:clamp(4.5rem,13.6vw,12rem);line-height:.76;letter-spacing:-.075em;text-transform:uppercase;white-space:nowrap}
+    .hero-title::before{content:"";position:absolute;inset:-40% -12%;background:radial-gradient(ellipse at center,rgba(226,27,43,.42),transparent 62%);filter:blur(70px);z-index:-1;pointer-events:none;animation:heroGlow 5.5s ease-in-out infinite alternate}
+    @keyframes heroGlow{from{opacity:.5;transform:scale(1)}to{opacity:.95;transform:scale(1.09)}}
+    .hero-title .line{display:inline-block}
+    .hero-title .r3x{margin-left:.08em;color:var(--blood-hi);text-shadow:0 0 42px rgba(226,27,43,.55)}
+    .hero-slogan{margin:0;color:#fff;font-family:var(--serif);font-size:clamp(1.25rem,2vw,1.7rem);font-style:italic;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+    .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1rem;width:min(100%,520px)}
+    .hero-actions .button{width:100%}
+    .hero-rail{position:absolute;right:var(--pad);top:50%;transform:translateY(-50%) rotate(90deg);transform-origin:100% 50%;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:#9a938c}
 
-        /* --- ANIMACIÓN HERO --- */
-        .hero-visible { animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes heroFadeIn {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    /* ---------- ABOUT ---------- */
+    .about-grid{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.2fr);gap:clamp(2rem,6vw,6rem);align-items:start}
+    .about-portrait{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius-lg);transform:translateZ(0)}
+    .about-portrait img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease);will-change:transform}
+    .about-portrait:hover img{transform:scale(1.025)}
+    .about-portrait:after{content:"";position:absolute;inset:0;border:1px solid var(--line);border-radius:inherit;box-shadow:inset 0 -120px 90px rgba(0,0,0,.38);pointer-events:none}
+    .about-copy{padding-top:clamp(0rem,4vw,4rem)}.about-copy p{max-width:64ch;color:#c8c1ba;font-size:clamp(1.05rem,1.6vw,1.3rem)}.about-copy strong{color:#fff;font-weight:780}
+    .artist-slogan{margin:clamp(1.5rem,3vw,2.5rem) 0;font-family:var(--serif);font-size:clamp(3.2rem,7vw,7.3rem)!important;font-style:italic;font-weight:600;line-height:.78;letter-spacing:-.05em;text-transform:uppercase;color:var(--blood-hi)!important}
 
-        /* --- SCROLL REVEAL --- */
-        .reveal {
-            opacity: 0; transform: translateY(35px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            will-change: opacity, transform;
-        }
-        .reveal.active { opacity: 1 !important; transform: translateY(0) !important; }
+    /* ---------- CATÁLOGO (GLASS) ---------- */
+    .catalog{background:linear-gradient(180deg,rgba(14,14,15,.82),rgba(7,7,7,.98));position:relative;overflow:hidden}
+    .catalog::before{content:"";position:absolute;top:22%;left:8%;width:70%;height:70%;background:radial-gradient(circle,rgba(226,27,43,.35),transparent 68%);filter:blur(90px);z-index:0;pointer-events:none}
+    .catalog .shell{position:relative;z-index:1}
+    .release-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    .release-card{padding:1rem;background:var(--glass);border:1px solid var(--glass-line);border-radius:var(--radius);transform:translateZ(0);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 24px 48px -24px rgba(0,0,0,.65);transition:transform .5s var(--ease),border-color .3s ease,background-color .3s ease}
+    .release-card:hover{transform:translate3d(0,-5px,0);border-color:rgba(226,27,43,.62);background:rgba(255,255,255,.04)}
+    .release-card p{margin:.1rem 0 .75rem;color:var(--blood-hi);font-size:.68rem;font-weight:780;letter-spacing:.13em;text-transform:uppercase}
+    .spotify-embed{width:100%;height:152px;border-radius:var(--radius-sm);overflow:hidden;background:rgba(0,0,0,.25)}
 
-        /* --- MARQUEE INFINITO --- */
-        .marquee-container { overflow: hidden; white-space: nowrap; width: 100%; display: flex; }
-        .marquee-content { display: flex; animation: marquee 22s linear infinite; will-change: transform; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    /* ---------- STREAMING ROW ---------- */
+    .streaming-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem;margin-top:clamp(1.5rem,4vw,2.5rem)}
+    .stream-btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.7rem 1rem;border:1px solid var(--glass-line);border-radius:999px;background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);color:#e6e0d9;font-size:.72rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase;transition:border-color .25s ease,background-color .25s ease,color .25s ease,transform .3s var(--ease);transform:translateZ(0)}
+    .stream-btn:hover{border-color:var(--blood-hi);background:rgba(226,27,43,.14);color:#fff;transform:translateY(-2px)}
+    .stream-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+    @media(max-width:620px){.stream-btn span{display:none}.stream-btn{padding:.7rem;width:44px;height:44px}}
 
-        /* --- PARTÍCULAS / CENIZAS --- */
-        #particles-container {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -2; overflow: hidden; background-color: transparent; pointer-events: none;
-        }
-        .particle { position: absolute; border-radius: 50%; opacity: 0; bottom: -10px; animation: float-up linear infinite; will-change: transform, opacity; }
-        @keyframes float-up {
-            0% { transform: translateY(0) scale(0.5); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.5; }
-            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-        }
+    /* ---------- SHOWS ---------- */
+    .shows-layout{display:grid;grid-template-columns:minmax(220px,.45fr) minmax(0,1fr);gap:clamp(2rem,6vw,6rem)}
+    .shows-layout .section-title{position:sticky;top:120px;height:max-content}
+    .show-list{border-top:1px solid var(--line)}
+    .show{display:grid;grid-template-columns:110px 1fr auto;gap:1.4rem;align-items:center;padding:1.6rem 0;border-bottom:1px solid var(--line)}
+    .show-date{font-family:var(--serif);font-size:clamp(2rem,4vw,3.4rem);font-style:italic;font-weight:600;color:var(--blood-hi);letter-spacing:-.04em;line-height:.8}
+    .show h3{margin:0;font-size:1.05rem;text-transform:uppercase}.show p{margin:.3rem 0 0;color:var(--muted);font-size:.85rem}
+    .show .status{color:#847d77;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 
-        /* Botones */
-        .btn-elegant {
-            position: relative; display: inline-block; padding: 1rem 2.5rem;
-            font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 0.2em;
-            text-transform: uppercase; color: #F4F4F4;
-            border: 1px solid rgba(244, 244, 244, 0.3); background: transparent;
-            overflow: hidden; transition: all 0.4s ease; z-index: 10;
-        }
-        .btn-elegant::before {
-            content: ''; position: absolute; top: 50%; left: 50%;
-            width: 0; height: 0; background: rgba(153, 0, 0, 0.85);
-            border-radius: 50%; transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease; z-index: -1;
-        }
-        .btn-elegant:hover::before { width: 320px; height: 320px; }
-        .btn-elegant:hover { border-color: #990000; color: #fff; box-shadow: 0 0 20px rgba(153, 0, 0, 0.5); }
+    /* ---------- VISUALES ---------- */
+    .visuals{overflow:hidden}
+    .video-head{display:flex;align-items:end;justify-content:space-between;gap:2rem;margin-bottom:clamp(2rem,5vw,4rem)}
+    .video-controls{display:flex;gap:.6rem}
+    .video-rail{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-inline:contain;touch-action:pan-x;padding-bottom:.5rem}
+    .video-rail::-webkit-scrollbar{display:none}
+    .video-card{position:relative;flex:0 0 min(70vw,820px);aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius-lg);scroll-snap-align:start;transform:translateZ(0)}
+    .video-card img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.22) brightness(.68);transition:transform .9s var(--ease),filter .5s ease;will-change:transform}
+    .video-card:hover img{transform:scale(1.045);filter:grayscale(.25) contrast(1.1) brightness(.75)}
+    .video-card:after{content:"";position:absolute;inset:0;border:1px solid var(--line);border-radius:inherit;pointer-events:none}
+    .video-label{position:absolute;left:1.25rem;right:1.25rem;bottom:1.2rem;display:flex;justify-content:space-between;align-items:end;z-index:2;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    .video-label svg{width:32px;height:32px;fill:#fff}
+    .video-more{display:flex;justify-content:center;margin-top:clamp(1.5rem,4vw,2.5rem)}
 
-        .btn-outline {
-            display: inline-block; padding: 0.75rem 1.8rem;
-            font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
-            text-transform: uppercase; color: #F4F4F4;
-            border: 1px solid #990000; border-radius: 6px; transition: all 0.3s ease; cursor: pointer;
-        }
-        .btn-outline:hover { background: #990000; color: #fff; box-shadow: 0 0 15px rgba(153,0,0,0.4); }
+    /* ---------- GALERÍA ---------- */
+    .gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-flow:dense;gap:clamp(.45rem,1vw,.85rem);transform:translateZ(0)}
+    .gallery-item{min-height:250px;overflow:hidden;border-radius:var(--radius);transition:transform .55s var(--ease),opacity .55s var(--ease);transform:translateZ(0)}
+    .gallery-item:nth-child(1){grid-column:span 7;grid-row:span 2}
+    .gallery-item:nth-child(2){grid-column:span 5}
+    .gallery-item:nth-child(3){grid-column:span 5}
+    .gallery-item:nth-child(4),.gallery-item:nth-child(5),.gallery-item:nth-child(6){grid-column:span 4}
+    .gallery-item img{width:100%;height:100%;min-height:250px;object-fit:cover;filter:grayscale(1) contrast(1.15);transition:filter .55s ease;will-change:transform}
+    .gallery-grid:hover .gallery-item:not(:hover){opacity:.4;transform:translateZ(0) scale(.98)}
+    .gallery-item:hover{transform:translateZ(0) scale(1.05);z-index:2}
+    .gallery-item:hover img{filter:grayscale(.1) contrast(1.04)}
 
-        .heart-divider { display: flex; align-items: center; justify-content: center; gap: 1rem; opacity: 0.5; margin: 2rem 0; }
-        .heart-divider::before, .heart-divider::after { content: ''; width: 50px; height: 1px; background: #990000; }
+    /* ---------- MERCH ---------- */
+    .merch{background:#0b0b0c}
+    .merch-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+    .product{display:flex;flex-direction:column;min-height:440px;padding:1rem;background:var(--glass);border:1px solid var(--glass-line);border-radius:var(--radius-lg);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4)}
+    .product-visual{display:grid;place-items:center;aspect-ratio:4/5;margin-bottom:1.2rem;border-radius:var(--radius);background:radial-gradient(circle at 50% 38%,rgba(164,8,18,.32),transparent 52%),#080808;color:var(--blood-hi)}
+    .product-visual svg{width:68px;height:68px;fill:none;stroke:currentColor;stroke-width:1.25}
+    .product h3{margin:0;font-size:1rem;text-transform:uppercase}
+    .product-price{margin:.45rem 0 1rem;color:var(--blood-hi);font-weight:800}
+    .sizes{display:flex;gap:.4rem;margin-bottom:1rem}
+    .size{min-width:34px;height:34px;border:1px solid var(--line);border-radius:8px;background:transparent}
+    .size.active{background:var(--blood);border-color:var(--blood)}
+    .product .button{margin-top:auto;width:100%}
 
-        .elegant-panel {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px); transition: transform 0.4s ease, border-color 0.4s ease;
-        }
-        .elegant-panel:hover { transform: translateY(-5px); border-color: rgba(153, 0, 0, 0.5); }
+    /* ---------- BOOKING ---------- */
+    .booking{background:var(--ink);color:#0b0b0c}.booking .section-title{max-width:15ch}
+    .booking-grid{display:grid;grid-template-columns:minmax(250px,.75fr) minmax(0,1.25fr);gap:clamp(2rem,6vw,6rem);align-items:start}
+    .contact-links{display:grid;gap:1rem}
+    .contact-links small{margin-top:.7rem;color:#625d57;font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .contact-links a{width:max-content;border-bottom:1px solid #8f8981;padding-bottom:.2rem;font-weight:720}
+    .form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .field{position:relative}.field.full{grid-column:1/-1}
+    .field input,.field textarea{width:100%;padding:1rem;border:1px solid #aaa39b;border-radius:var(--radius-sm);background:rgba(255,255,255,.22);color:#090909;resize:vertical}
+    .field label{display:block;margin-bottom:.45rem;font-size:.68rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:#625d57}
+    .form .button{grid-column:1/-1;justify-self:start;margin-top:1rem}
 
-        .spotify-container { width: 100%; height: 152px; border-radius: 12px; overflow: hidden; background: #121212; }
-        .title-glow { text-shadow: 0 0 35px rgba(153, 0, 0, 0.6); }
+    /* ---------- FOOTER ---------- */
+    .footer{position:relative;z-index:2;padding:clamp(3rem,6vw,5rem) var(--pad) 2rem;background:#070707;overflow:hidden}
+    .footer-community{display:grid;gap:1rem;margin-bottom:clamp(2rem,4vw,3rem);padding-bottom:clamp(2rem,4vw,3rem);border-bottom:1px solid var(--line)}
+    .footer-community small{color:#7d766f;font-size:.64rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .community-links{display:flex;flex-wrap:wrap;gap:.6rem}
+    .community-links a{padding:.65rem 1rem;border:1px solid var(--line);border-radius:999px;background:var(--glass);color:#dad3cc;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:border-color .25s ease,background-color .25s ease,color .25s ease,transform .3s var(--ease)}
+    .community-links a:hover{border-color:var(--blood-hi);background:rgba(226,27,43,.14);color:#fff;transform:translateY(-2px)}
+    .footer-row{display:flex;justify-content:space-between;align-items:end;gap:2rem;color:#9f9790;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em}
+    .footer-socials{display:flex;gap:.55rem}
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #080808; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #990000; }
+    /* ---------- CARRITO ---------- */
+    .cart-overlay{position:fixed;inset:0;z-index:105;background:rgba(0,0,0,.72);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s}.cart-overlay.open{opacity:1;visibility:visible}
+    .cart{position:fixed;top:.5rem;right:.5rem;bottom:.5rem;z-index:110;width:min(420px,calc(100vw - 1rem));padding:1.4rem;background:#0b0b0c;border:1px solid var(--line);border-radius:var(--radius-lg);transform:translateX(calc(100% + 1rem));transition:transform .55s var(--ease);display:flex;flex-direction:column;will-change:transform;overscroll-behavior:contain}.cart.open{transform:translateX(0)}
+    .cart-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--line)}.cart h2{margin:0;font-size:1.2rem;text-transform:uppercase}
+    .cart-empty{margin:auto;text-align:center;color:var(--muted)}.cart-foot{padding-top:1rem;border-top:1px solid var(--line)}
+    .cart-foot input{width:100%;margin-bottom:.7rem;padding:.8rem;border:1px solid var(--line);border-radius:var(--radius-sm);background:#080808;color:#fff}
+    .cart-foot .button{width:100%}
 
-        .input-elegant {
-            width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.75rem 0; color: #F4F4F4; font-family: 'Montserrat', sans-serif; font-weight: 300; transition: border-color 0.3s ease;
-        }
-        .input-elegant:focus { outline: none; border-bottom-color: #990000; }
-        .show-row { border-bottom: 1px solid rgba(255, 255, 255, 0.08); transition: background 0.3s ease; }
-        .show-row:hover { background: rgba(153, 0, 0, 0.08); }
+    /* ---------- MENÚ MÓVIL ---------- */
+    .mobile-menu{position:fixed;inset:0;z-index:75;display:none;place-items:center;padding:6.5rem 1.25rem 2rem;background:#070707;opacity:0;visibility:hidden;overflow-y:auto;transition:opacity .35s ease,visibility .35s}.mobile-menu.open{opacity:1;visibility:visible}
+    .mobile-menu nav{display:grid;gap:.7rem;text-align:center}
+    .mobile-menu a{font-size:clamp(1.8rem,9vw,3.6rem);font-weight:820;letter-spacing:-.04em;text-transform:uppercase}
 
-        /* Tipografía Fluida (clamp) para evitar tamaños gigantes en móviles */
-        .text-hero-title { font-size: clamp(3.5rem, 8vw, 10rem); line-height: 1; }
-        .text-section-title { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; }
-        .text-about-title { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; }
-    </style>
+    .word{display:inline-block;overflow:hidden;vertical-align:bottom}.word-inner{display:inline-block}
+
+    @media(max-width:900px){
+      .nav{grid-template-columns:auto 1fr}.nav-links,.nav-socials{display:none}.nav-actions{grid-column:2;justify-self:end}.menu-toggle{display:grid}
+      .section-head,.about-grid,.shows-layout,.booking-grid{grid-template-columns:1fr}
+      .hero-title{font-size:clamp(4rem,18vw,8rem)}.hero-rail{display:none}.section-head{align-items:start}
+      .about-copy{padding-top:0}.about-portrait{width:min(100%,540px)}
+      .shows-layout .section-title{position:static}
+      .video-card{flex-basis:min(82vw,620px)}
+      .release-grid{grid-template-columns:1fr 1fr}
+      .merch-grid{grid-template-columns:1fr 1fr}
+      .mobile-menu{display:grid}
+      .gallery-item:nth-child(n){grid-column:span 6;grid-row:auto}
+      .gallery-item:nth-child(1){grid-column:span 12}
+      .footer-row{align-items:start;flex-direction:column}
+    }
+    @media(max-width:620px){
+      .nav{padding-block:.72rem;gap:.7rem}.nav .button{display:none}
+      .hero{padding-inline:1rem}.hero-media img{object-position:58% 30%}
+      .hero-title{font-size:clamp(3.85rem,20vw,6.3rem);line-height:.78}
+      .hero-slogan{letter-spacing:.2em}
+      .hero-actions{width:100%;gap:.5rem}
+      .hero-actions .button{font-size:.66rem;padding:.7rem .6rem;letter-spacing:.08em;min-height:46px}
+      .section-title{font-size:clamp(2.8rem,14vw,4.4rem)}
+      .video-head{align-items:start}
+      .video-card{flex-basis:88vw}
+      .release-grid{grid-template-columns:1fr}
+      .merch-grid{grid-template-columns:1fr 1fr;gap:.6rem}
+      .product{min-height:auto;padding:.65rem;border-radius:12px}
+      .product-visual{aspect-ratio:1/1;margin-bottom:.6rem}
+      .product-visual svg{width:38px;height:38px}
+      .product h3{font-size:.78rem;line-height:1.15}
+      .product-price{font-size:.8rem;margin:.3rem 0 .6rem}
+      .sizes{gap:.28rem;margin-bottom:.55rem}
+      .size{min-width:26px;height:26px;font-size:.6rem;border-radius:6px}
+      .product .button{font-size:.58rem;min-height:38px;padding:.5rem .4rem;letter-spacing:.06em}
+      .show{grid-template-columns:80px 1fr}.show .button,.show .status{grid-column:1/-1;width:100%}
+      .gallery-item:nth-child(n),.gallery-item:nth-child(1){grid-column:span 6;grid-row:auto;min-height:190px}
+      .gallery-item img{min-height:190px}
+      .form{grid-template-columns:1fr}.field{grid-column:1/-1}
+      .cart{top:.25rem;right:.25rem;bottom:.25rem;width:calc(100vw - .5rem);padding:1rem}
+      .mobile-menu a{font-size:clamp(1.65rem,8.5vw,2.8rem)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto!important}
+      *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+      .grain,#webgl{display:none!important}
+      .button{will-change:auto}
+      .about-portrait img,.gallery-item img,.video-card img{will-change:auto}
+      .word,.word-inner{display:inline}.word{overflow:visible}
+    }
+  </style>
 </head>
-<body class="font-ux selection:bg-lawRed selection:text-white relative">
+<body>
+  <div id="loader" aria-live="polite" aria-label="Iniciando sistema">
+    <div class="loader-inner">
+      <svg class="loader-ecg" viewBox="0 0 600 90" aria-hidden="true"><path pathLength="1" d="M0 46H100L118 46L134 10L156 79L178 46H260L277 46L291 22L310 68L330 46H420L437 46L452 7L475 82L496 46H600"/></svg>
+      <div class="boot-copy"><span id="bootText">Cargando</span><span class="boot-status"><span id="bootPercent">0</span>%</span></div>
+    </div>
+  </div>
 
-    <!-- Fondo Mejorado -->
-    <div id="particles-container"></div>
-    <div class="room-bg"></div>
-    <div class="vignette-overlay"></div>
+  <canvas id="webgl" aria-hidden="true"></canvas>
+  <div class="static-atmosphere" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
-    <!-- Barra de Navegación -->
-    <nav class="fixed top-0 w-full z-50 bg-lawDark/80 backdrop-blur-md border-b border-white/5 px-6 md:px-12 py-4 flex justify-between items-center transition-all">
-        <a href="#" class="font-elegant text-xl md:text-2xl font-bold tracking-[0.2em] relative z-50">1<span class="text-lawRed">.</span>11</a>
-        
-        <!-- Menú Desktop -->
-        <div class="hidden lg:flex gap-8 font-ux text-xs uppercase tracking-[0.2em] font-semibold text-gray-400">
-            <a href="#about" class="hover:text-lawRed transition-colors">Tu Professor</a>
-            <a href="#music" class="hover:text-lawRed transition-colors">Discografía</a>
-            <a href="#shows" class="hover:text-lawRed transition-colors">Shows</a>
-            <a href="#videos" class="hover:text-lawRed transition-colors">Visuales</a>
-            <a href="#gallery" class="hover:text-lawRed transition-colors">Galería</a>
-            <a href="#contact" class="hover:text-lawRed transition-colors">Booking</a>
-        </div>
-        
-        <!-- Iconos Sociales Desktop -->
-        <div class="hidden lg:flex items-center gap-4">
-            <a href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" class="text-xl hover:text-lawRed transition-colors" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://www.instagram.com/diego.r3x" target="_blank" class="text-xl hover:text-lawRed transition-colors" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://youtube.com/@basa.r3x" target="_blank" class="text-xl hover:text-lawRed transition-colors" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        </div>
-
-        <!-- Botón Hamburguesa Móvil -->
-        <button id="mobile-menu-btn" class="lg:hidden text-2xl text-white relative z-50 focus:outline-none">
-            <i class="fa-solid fa-bars" id="menu-icon"></i>
-        </button>
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="BASA.R3X, inicio">111</a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="#professor">BASA.R3X</a><a href="#music">Discografía</a><a href="#shows">Shows</a><a href="#visuals">Visuales</a><a href="#gallery">Galería</a><a href="#merch">Merch</a><a href="#booking">Booking</a>
     </nav>
-
-    <!-- Menú Móvil Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-lawDark/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 opacity-0 transition-opacity duration-300 text-center">
-        <a href="#about" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Tu Professor</a>
-        <a href="#music" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Discografía</a>
-        <a href="#shows" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Shows</a>
-        <a href="#videos" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Visuales</a>
-        <a href="#gallery" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Galería</a>
-        <a href="#contact" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors text-lawRed">Booking</a>
+    <div class="nav-actions">
+      <div class="nav-socials" aria-label="Redes sociales">
+        <a class="social-icon" href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" rel="noopener" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.7.7 0 0 1-.96.23c-2.63-1.6-5.94-1.97-9.84-1.08a.7.7 0 1 1-.31-1.36c4.26-.97 7.94-.55 10.88 1.24.33.2.43.64.23.97Zm1.37-3.03a.88.88 0 0 1-1.2.3c-3.02-1.86-7.63-2.39-11.2-1.31a.88.88 0 1 1-.51-1.68c4.09-1.24 9.17-.64 12.62 1.49.42.25.55.79.29 1.2Zm.12-3.15C14.47 8.07 8.5 7.87 5.04 8.91a1.05 1.05 0 1 1-.61-2.01c3.98-1.2 10.58-.96 14.74 1.5a1.05 1.05 0 0 1-1.08 1.82Z"/></svg></a>
+        <a class="social-icon" href="https://www.instagram.com/diego.r3x" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm11 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg></a>
+        <a class="social-icon" href="https://youtube.com/@basa.r3x" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8ZM9.7 15.2V8.8l6 3.2-6 3.2Z"/></svg></a>
+      </div>
+      <button class="icon-button" id="cartOpen" type="button" aria-label="Abrir carrito" style="position:relative">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="icon-button menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
     </div>
+  </header>
 
-    <!-- Hero Section -->
-    <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative z-10 hero-visible pt-16">
-        <p class="font-ux text-xs md:text-sm tracking-[0.5em] uppercase text-lawRed mb-4 font-bold">
-            DIEGO GUANOQUIZA
-        </p>
-        <!-- Tipografía adaptativa para el Hero -->
-        <h1 class="font-elegant text-hero-title mb-2 title-glow">
-            BASA.R3X
-        </h1>
-        <div class="heart-divider w-full max-w-xs mx-auto my-8">
-            <i class="fa-solid fa-heart text-lawRed text-sm"></i>
-        </div>
-        <div class="flex gap-4 flex-col sm:flex-row mt-4">
-            <!-- Botón redirigido a Tu Professor (About) -->
-            <a href="#about" class="btn-elegant w-full sm:w-auto">Entrar al Room</a>
-            <a href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20cotizar%20un%20show%20/%20colaboraci%C3%B3n" target="_blank" class="btn-elegant bg-lawRed/20 w-full sm:w-auto" style="border-color: #990000;">Booking Directo</a>
-        </div>
-    </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><nav aria-label="Navegación móvil"><a href="#professor">BASA.R3X</a><a href="#music">Discografía</a><a href="#shows">Shows</a><a href="#visuals">Visuales</a><a href="#gallery">Galería</a><a href="#merch">Merch</a><a href="#booking">Booking</a></nav></div>
 
-    <!-- Cinta Marquee -->
-    <div class="marquee-container py-4 border-y border-white/5 bg-lawDark/40 backdrop-blur-sm relative z-10">
-        <div class="marquee-content font-elegant text-xl md:text-2xl tracking-[0.3em] text-gray-500 uppercase">
-            <span class="px-8">BASA.R3X • TU PROFESSOR • ROCK & TRAP • DRILL • REGGAETON •</span>
-            <span class="px-8">BASA.R3X • TU PROFESSOR • ROCK & TRAP • DRILL • REGGAETON •</span>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-media" aria-hidden="true"><img src="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg" alt="" fetchpriority="high"></div>
+      <div class="hero-grid">
+        <h1 class="hero-title"><span class="line">BASA</span><span class="line r3x">R3X</span></h1>
+        <p class="hero-slogan">Tu Professor</p>
+        <div class="hero-actions">
+          <a class="button primary magnetic" href="#professor">Ver biografía</a>
+          <a class="button magnetic" href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20cotizar%20un%20show%20/%20colaboraci%C3%B3n" target="_blank" rel="noopener">Booking directo</a>
         </div>
+      </div>
+      <div class="hero-rail">Cuenca, Ecuador — Tripulación Corazón</div>
+    </section>
+
+    <section class="section" id="professor">
+      <div class="shell about-grid">
+        <figure class="about-portrait image-reveal"><img src="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg" alt="Diego Guanoquiza, BASA.R3X" loading="lazy" decoding="async"></figure>
+        <div class="about-copy">
+          <h2 class="section-title split-title">Diego Guanoquiza</h2>
+          <p class="artist-slogan split-copy">Tu Professor</p>
+          <p><strong>Diego G</strong>, bajo la identidad de <strong>BASA.R3X</strong>, fusiona el Rock con el pulso del género urbano y la honestidad de quien aprendió a cantar en las discotecas de la Calle Larga. Su método es simple: escribir sin miedo a la funa lo que otros callan y hacerlo sonar impecable.</p>
+          <p>Teacher y gymrat, lleva a la música la disciplina del entrenamiento y la claridad del aula. Junto a su productor Sam Music cuida cada beat y cada verso para que suenen bien y digan algo. Empieza por "Tu sonrisas!". Mijaaa.</p>
+          <div class="hero-actions" style="grid-template-columns:1fr">
+            <a class="button magnetic" href="https://drive.google.com/" target="_blank" rel="noopener">Descargar press kit</a>
+          </div>
+          <div class="profile-socials" aria-label="Redes de BASA.R3X" style="margin-top:1.2rem">
+            <a class="social-icon" href="https://www.instagram.com/diego.r3x" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6-1.5A1.25 1.25 0 1 0 18 8a1.25 1.25 0 0 0 0-2.5ZM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></a>
+            <a class="social-icon" href="https://www.tiktok.com/@basa.r3x" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 2h3c.2 1.8 1.2 3.2 3 4v3c-1.2 0-2.4-.4-3.4-1v7.1a6.1 6.1 0 1 1-5.3-6V12a3.2 3.2 0 1 0 2.7 3.1V2Z"/></svg></a>
+            <a class="social-icon" href="https://youtube.com/@basa.r3x" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8ZM9.7 15.2V8.8l6 3.2-6 3.2Z"/></svg></a>
+            <a class="social-icon" href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" rel="noopener" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.7.7 0 0 1-.96.23c-2.63-1.6-5.94-1.97-9.84-1.08a.7.7 0 1 1-.31-1.36c4.26-.97 7.94-.55 10.88 1.24.33.2.43.64.23.97Zm1.37-3.03a.88.88 0 0 1-1.2.3c-3.02-1.86-7.63-2.39-11.2-1.31a.88.88 0 1 1-.51-1.68c4.09-1.24 9.17-.64 12.62 1.49.42.25.55.79.29 1.2Z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section catalog rule" id="music">
+      <div class="shell">
+        <div class="section-head"><h2 class="section-title split-title">Catálogo clínico</h2><p class="eyeline">Lanzamientos oficiales. Escucha una selección aquí o abre tu plataforma favorita.</p></div>
+        <div class="release-grid" aria-label="Lanzamientos principales">
+          <article class="release-card"><p>Tu entrada al Room</p><div class="spotify-embed" data-spotify-uri="spotify:track:58vJUewQbH5WeKNw5vu7eM"></div></article>
+          <article class="release-card"><p>Pulso urbano</p><div class="spotify-embed" data-spotify-uri="spotify:track:6eIo3TSigNAQZmpnD9PfPe"></div></article>
+          <article class="release-card"><p>Archivo clínico</p><div class="spotify-embed" data-spotify-uri="spotify:track:3vXxJXa1j9QXFTyGSJa2Ru"></div></article>
+        </div>
+
+        <div class="streaming-row" aria-label="Abrir BASA.R3X en plataformas de streaming">
+          <a class="stream-btn" href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" rel="noopener" aria-label="Abrir en Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.7.7 0 0 1-.96.23c-2.63-1.6-5.94-1.97-9.84-1.08a.7.7 0 1 1-.31-1.36c4.26-.97 7.94-.55 10.88 1.24.33.2.43.64.23.97Zm1.37-3.03a.88.88 0 0 1-1.2.3c-3.02-1.86-7.63-2.39-11.2-1.31a.88.88 0 1 1-.51-1.68c4.09-1.24 9.17-.64 12.62 1.49.42.25.55.79.29 1.2Zm.12-3.15C14.47 8.07 8.5 7.87 5.04 8.91a1.05 1.05 0 1 1-.61-2.01c3.98-1.2 10.58-.96 14.74 1.5a1.05 1.05 0 0 1-1.08 1.82Z"/></svg><span>Spotify</span></a>
+          <a class="stream-btn" href="https://music.apple.com/search?term=basa.r3x" target="_blank" rel="noopener" aria-label="Abrir en Apple Music"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm2.5 4v9.2a2.4 2.4 0 1 1-1.8-2.3V8l-4.2.92v7.78a2.4 2.4 0 1 1-1.8-2.3V7.4l7.8-1.72V6Z"/></svg><span>Apple Music</span></a>
+          <a class="stream-btn" href="https://music.youtube.com/search?q=basa+r3x" target="_blank" rel="noopener" aria-label="Abrir en YouTube Music"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 4a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm-1.5 3.5v5l4.5-2.5-4.5-2.5Z"/></svg><span>YouTube Music</span></a>
+          <a class="stream-btn" href="https://www.deezer.com/search/basa%20r3x" target="_blank" rel="noopener" aria-label="Abrir en Deezer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 14h3v2H3v-2Zm0-4h3v2H3v-2Zm0-4h3v2H3V6Zm5 8h3v2H8v-2Zm0-4h3v2H8v-2Zm0-4h3v2H8V6Zm5 8h3v2h-3v-2Zm0-4h3v2h-3v-2Zm0-4h3v2h-3V6Zm5 8h3v2h-3v-2Zm0-4h3v2h-3v-2Z"/></svg><span>Deezer</span></a>
+          <a class="stream-btn" href="https://soundcloud.com/search?q=basa%20r3x" target="_blank" rel="noopener" aria-label="Abrir en SoundCloud"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16v-3.5a.5.5 0 1 1 1 0V16H2Zm2 0V11a.5.5 0 1 1 1 0v5H4Zm2 0V9.5a.5.5 0 1 1 1 0V16H6Zm2 0V8a.5.5 0 1 1 1 0v8H8Zm2 0V7a.5.5 0 1 1 1 0v9h-1Zm2 0V6.5a.5.5 0 1 1 1 0V16h-1Zm2 0V7a.5.5 0 1 1 1 0v9h-1Zm2.5 0H14V8.8c.6-.3 1.3-.55 2-.55 2.5 0 4.5 2 4.5 4.5S18.5 16 16.5 16Z"/></svg><span>SoundCloud</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="shows">
+      <div class="shell shows-layout">
+        <h2 class="section-title split-title">Shows en vivo</h2>
+        <div class="show-list">
+          <article class="show"><time class="show-date" datetime="12-07">07 DIC</time><div><h3>Cuenca, Ecuador</h3><p>Club nocturno / show en vivo</p></div><a class="button magnetic" href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20reservar%20entradas%20para%20el%20show%20del%207%20de%20diciembre%20en%20Cuenca" target="_blank" rel="noopener">Reservar</a></article>
+          <article class="show"><time class="show-date" datetime="11-11">11 NOV</time><div><h3>Guayaquil, Ecuador</h3><p>Lugar por anunciar</p></div><span class="status">Por anunciar</span></article>
+          <article class="show"><time class="show-date">ENE</time><div><h3>Quito, Ecuador</h3><p>Lugar por anunciar</p></div><span class="status">Próximamente</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section visuals rule" id="visuals">
+      <div class="shell video-head">
+        <div><p class="eyeline">Videografía oficial</p><h2 class="section-title split-title">Registro visual</h2></div>
+        <div class="video-controls" aria-label="Controles de videos">
+          <button class="icon-button" id="videoPrev" type="button" aria-label="Video anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+          <button class="icon-button" id="videoNext" type="button" aria-label="Video siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="video-rail shell" id="videoRail">
+        <a class="video-card image-reveal" href="https://www.youtube.com/watch?v=Plt1SrU21qQ" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/Plt1SrU21qQ/maxresdefault.jpg" alt="Video oficial de BASA.R3X" loading="lazy" decoding="async"><span class="video-label">Video principal <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></a>
+        <a class="video-card image-reveal" href="https://www.youtube.com/watch?v=bEUdUMIZ2J4" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/bEUdUMIZ2J4/maxresdefault.jpg" alt="Registro visual de BASA.R3X" loading="lazy" decoding="async"><span class="video-label">Archivo audiovisual <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></a>
+        <a class="video-card image-reveal" href="https://www.youtube.com/watch?v=eb-YBCDLS5k" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/eb-YBCDLS5k/maxresdefault.jpg" alt="Performance de BASA.R3X" loading="lazy" decoding="async"><span class="video-label">Performance <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></a>
+      </div>
+      <div class="video-more shell">
+        <a class="button primary magnetic" href="https://youtube.com/@basa.r3x" target="_blank" rel="noopener">Ver más en YouTube <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="shell">
+        <div class="section-head"><h2 class="section-title split-title">Galería</h2><p class="eyeline">Archivo fotográfico</p></div>
+        <div class="gallery-grid">
+          <figure class="gallery-item"><img src="https://i.pinimg.com/736x/f5/7c/f5/f57cf513675e19aea23d71738b2bb048.jpg" alt="BASA.R3X en estudio" loading="lazy" decoding="async"></figure>
+          <figure class="gallery-item"><img src="https://i.pinimg.com/736x/fe/d7/cc/fed7cc6e245357f4487d65c956dfe1ff.jpg" alt="Retrato de BASA.R3X" loading="lazy" decoding="async"></figure>
+          <figure class="gallery-item"><img src="https://i.pinimg.com/736x/6a/85/f8/6a85f8fa6be9f3b767295d0078ed2e61.jpg" alt="Archivo visual BASA.R3X" loading="lazy" decoding="async"></figure>
+          <figure class="gallery-item"><img src="https://i.pinimg.com/736x/5a/eb/e5/5aebe52ce1aaa1b5aa7f70db04f4ec39.jpg" alt="BASA.R3X en escena" loading="lazy" decoding="async"></figure>
+          <figure class="gallery-item"><img src="https://i.pinimg.com/736x/97/8e/17/978e17b41f9af5c48eb3f0c6f863ac83.jpg" alt="Detalle editorial BASA.R3X" loading="lazy" decoding="async"></figure>
+          <figure class="gallery-item"><img src="https://i.pinimg.com/736x/54/d9/31/54d931b90bf5a4ed0708785016ccfcbd.jpg" alt="Retrato en blanco y negro BASA.R3X" loading="lazy" decoding="async"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section merch rule" id="merch">
+      <div class="shell">
+        <div class="section-head"><h2 class="section-title split-title">Merch oficial</h2><p class="eyeline">Luna Veraniega, Tu Professor y piezas de la Tripulación Corazón.</p></div>
+        <div class="merch-grid" id="merchGrid"></div>
+      </div>
+    </section>
+
+    <section class="section booking" id="booking">
+      <div class="shell">
+        <div class="section-head"><h2 class="section-title split-title">Booking & contacto</h2><p class="eyeline" style="color:#5f5a55">Para shows en vivo, contrataciones, producciones y colaboraciones.</p></div>
+        <div class="booking-grid">
+          <div class="contact-links">
+            <small>Management & correo</small><a href="mailto:basa11business@outlook.com">basa11business@outlook.com</a>
+            <small>WhatsApp directo</small><a href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20cotizar%20un%20show" target="_blank" rel="noopener">+593 99 198 0908</a>
+            <small>Base operativa</small><span>Cuenca, Ecuador</span>
+          </div>
+          <form class="form" id="contactForm">
+            <div class="field"><label for="name">Nombre o promotora</label><input id="name" name="Nombre" autocomplete="name" required></div>
+            <div class="field"><label for="email">Correo</label><input id="email" name="Correo" type="email" autocomplete="email" required></div>
+            <div class="field full"><label for="subject">Asunto</label><input id="subject" name="Asunto" required></div>
+            <div class="field full"><label for="message">Detalles de la propuesta</label><textarea id="message" name="Mensaje" rows="4" required></textarea></div>
+            <button class="button primary magnetic" type="submit">Enviar propuesta</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-community">
+      <small>Comunidad</small>
+      <div class="community-links">
+        <a href="https://chat.whatsapp.com/HGtAcvyshG42Mky1e3L6tx" target="_blank" rel="noopener">WhatsApp VIP</a>
+        <a href="https://t.me/+jtmWNN4HTn04ODk5" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://kick.com/basar3x" target="_blank" rel="noopener">Kick</a>
+      </div>
     </div>
+    <div class="footer-row">
+      <div class="footer-socials" aria-label="Redes sociales">
+        <a class="social-icon" href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" rel="noopener" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.7.7 0 0 1-.96.23c-2.63-1.6-5.94-1.97-9.84-1.08a.7.7 0 1 1-.31-1.36c4.26-.97 7.94-.55 10.88 1.24.33.2.43.64.23.97Zm1.37-3.03a.88.88 0 0 1-1.2.3c-3.02-1.86-7.63-2.39-11.2-1.31a.88.88 0 1 1-.51-1.68c4.09-1.24 9.17-.64 12.62 1.49.42.25.55.79.29 1.2Z"/></svg></a>
+        <a class="social-icon" href="https://youtube.com/@basa.r3x" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8ZM9.7 15.2V8.8l6 3.2-6 3.2Z"/></svg></a>
+        <a class="social-icon" href="https://www.instagram.com/diego.r3x" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6-1.5A1.25 1.25 0 1 0 18 8a1.25 1.25 0 0 0 0-2.5ZM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></a>
+        <a class="social-icon" href="https://www.tiktok.com/@basa.r3x" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2h3c.2 1.8 1.2 3.2 3 4v3c-1.2 0-2.4-.4-3.4-1v7.1a6.1 6.1 0 1 1-5.3-6V12a3.2 3.2 0 1 0 2.7 3.1V2Z"/></svg></a>
+      </div>
+      <span>© 2026 BASA.R3X — Cuenca, Ecuador</span>
+    </div>
+  </footer>
 
-    <!-- ABOUT SECTION (Ahora en segunda posición) -->
-    <section id="about" class="py-24 px-6 bg-black/40 border-b border-white/5 relative z-10 backdrop-blur-sm reveal">
-        <div class="max-w-6xl mx-auto flex flex-col-reverse md:flex-row gap-12 md:gap-20 items-center">
-            
-            <div class="w-full md:w-1/2">
-                <h3 class="font-ux text-xs uppercase tracking-[0.4em] text-lawRed mb-3 font-bold">Diego Guanoquiza</h3>
-                <!-- Tipografía adaptativa -->
-                <h2 class="font-elegant text-about-title mb-6 uppercase tracking-[0.1em]">Tu<br>Professor</h2>
-                
-                <div class="space-y-5 font-ux text-gray-400 font-light leading-relaxed text-sm md:text-base">
-                    <p>
-                        <strong class="text-white font-medium">Diego G</strong>, bajo la identidad de <strong class="text-white font-medium">BASA.R3X</strong>, fusiona el Rock con el pulso del género urbano y la honestidad de quien aprendió a cantar en las discotecas de la Calle Larga. Su método es simple: escribir sin miedo a la funa lo que otros callan y hacerlo sonar impecable.
-                    </p>
-                    <p>
-                        Teacher y gymrat, lleva a la música la disciplina del entrenamiento y la claridad del aula. Junto a su productor Sam Music cuida cada beat y cada verso para que suenen bien y digan algo. Empieza por "Tu sonrisas!". Mijaaa.
-                    </p>
-                </div>
-                
-                <div class="mt-8 flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-                    <a href="https://drive.google.com/" target="_blank" class="btn-outline flex items-center justify-center gap-2 w-full sm:w-auto" title="Inserta aquí tu Press Kit">
-                        <i class="fa-solid fa-download"></i> Descargar Press Kit
-                    </a>
-                    <div class="flex gap-5 mt-4 sm:mt-0 items-center justify-center w-full sm:w-auto pt-1">
-                        <a href="https://www.instagram.com/diego.r3x" target="_blank" class="text-2xl text-gray-500 hover:text-white transition-transform"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@basa.r3x" target="_blank" class="text-2xl text-gray-500 hover:text-white transition-transform"><i class="fa-brands fa-tiktok"></i></a>
-                        <a href="https://youtube.com/@basa.r3x" target="_blank" class="text-2xl text-gray-500 hover:text-white transition-transform"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" class="text-2xl text-gray-500 hover:text-white transition-transform"><i class="fa-brands fa-spotify"></i></a>
-                    </div>
-                </div>
-            </div>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart" id="cart" aria-hidden="true" aria-label="Carrito de merch">
+    <div class="cart-head"><h2>Tu carrito</h2><button class="icon-button" id="cartClose" type="button" aria-label="Cerrar carrito"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div>
+    <ul id="cartItems" style="list-style:none;padding:1rem 0;margin:0;display:grid;gap:1rem;overflow:auto"></ul>
+    <div class="cart-foot">
+      <p id="cartTotal" style="display:flex;justify-content:space-between;font-weight:800"><span>Total</span><span>$0.00</span></p>
+      <input id="cartName" placeholder="Tu nombre">
+      <input id="cartNote" placeholder="Ciudad / nota de entrega">
+      <button class="button primary" id="checkout" type="button">Pedir por WhatsApp</button>
+    </div>
+  </aside>
 
-            <!-- Foto Principal con Glow -->
-            <div class="w-full md:w-1/2 relative group max-w-sm mx-auto md:mx-0">
-                <div class="absolute inset-0 bg-lawRed opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-700"></div>
-                <div class="elegant-panel p-2 rounded-2xl relative z-10 aspect-[3/4] overflow-hidden bg-black/60">
-                    <img loading="lazy" src="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg" alt="Diego Guanoquiza - Tu Professor" class="w-full h-full object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-700">
-                </div>
-            </div>
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script>
+    (() => {
+      "use strict";
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+      const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-        </div>
-    </section>
+      const MERCH = [
+        {id:"album",name:'Álbum "Luna Veraniega"',price:20,sizes:[],icon:'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="23"/><circle cx="32" cy="32" r="7"/><path d="M32 9v10M9 32h10M45 32h10M32 45v10"/></svg>'},
+        {id:"tee",name:'Camiseta "Tu Professor"',price:18,sizes:["S","M","L","XL"],icon:'<svg viewBox="0 0 64 64"><path d="M22 10 10 17l6 12 7-3v28h18V26l7 3 6-12-12-7c-2 5-18 5-20 0Z"/></svg>'},
+        {id:"hood",name:"Hoodie Tripulación Corazón",price:38,sizes:["S","M","L","XL"],icon:'<svg viewBox="0 0 64 64"><path d="M24 9c-7 3-12 8-15 16l8 5 4-6v30h22V24l4 6 8-5c-3-8-8-13-15-16-1 7-15 7-16 0Z"/><path d="M24 10c0 9 16 9 16 0M25 39h14"/></svg>'},
+        {id:"stk",name:"Pack Stickers 111",price:4,sizes:[],icon:'<svg viewBox="0 0 64 64"><path d="M13 11h38v30L39 53H13V11Z"/><path d="M39 53V41h12M21 22h22M21 30h16"/></svg>'}
+      ];
 
-    <!-- MUSIC SECTION -->
-    <section id="music" class="py-24 px-6 max-w-7xl mx-auto relative z-10 reveal">
-        <div class="text-center mb-16 px-4">
-            <!-- Tipografía adaptativa -->
-            <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Catálogo Clínico</h2>
-            <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
-            <p class="font-ux text-xs tracking-[0.3em] uppercase text-gray-500 font-light mt-4">Lanzamientos Oficiales</p>
-        </div>
+      let lenis = null;
+      let smoke = null;
+      let pageVisible = !document.hidden;
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="elegant-panel p-6 rounded-xl flex flex-col items-center">
-                <p class="font-ux text-xs tracking-[0.3em] text-lawRed uppercase mb-6 font-semibold">Single 01</p>
-                <div class="spotify-container">
-                    <iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/58vJUewQbH5WeKNw5vu7eM?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-                </div>
-            </div>
-            <div class="elegant-panel p-6 rounded-xl flex flex-col items-center md:-translate-y-6">
-                <p class="font-ux text-xs tracking-[0.3em] text-lawRed uppercase mb-6 font-semibold">Single 02</p>
-                <div class="spotify-container">
-                    <iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/6eIo3TSigNAQZmpnD9PfPe?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-                </div>
-            </div>
-            <div class="elegant-panel p-6 rounded-xl flex flex-col items-center">
-                <p class="font-ux text-xs tracking-[0.3em] text-lawRed uppercase mb-6 font-semibold">Single 03</p>
-                <div class="spotify-container">
-                    <iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/3vXxJXa1j9QXFTyGSJa2Ru?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-                </div>
-            </div>
-        </div>
+      class Cart {
+        constructor(){
+          this.items = [];
+          try{ this.items = JSON.parse(localStorage.getItem("basa_cart")) || []; }catch(e){}
+          $("#merchGrid").addEventListener("click", event => this.handle(event));
+          $("#cartItems").addEventListener("click", event => {
+            const button = event.target.closest("[data-key]");
+            if(button) this.change(button.dataset.key, +button.dataset.delta);
+          });
+          $("#checkout").addEventListener("click", () => this.checkout());
+          this.render();
+        }
+        handle(event){
+          const productEl = event.target.closest(".product"); if(!productEl) return;
+          const size = event.target.closest(".size");
+          if(size){ $$(".size", productEl).forEach(el => el.classList.toggle("active", el === size)); return; }
+          if(!event.target.closest(".add-product")) return;
+          const product = MERCH.find(item => item.id === productEl.dataset.id);
+          const selected = $(".size.active", productEl);
+          const chosen = selected ? selected.dataset.size : "";
+          const key = `${product.id}|${chosen}`;
+          const existing = this.items.find(item => item.key === key);
+          existing ? existing.qty++ : this.items.push({key, name:product.name, price:product.price, size:chosen, qty:1});
+          this.render(); openCart(true);
+        }
+        change(key, delta){
+          const item = this.items.find(entry => entry.key === key); if(!item) return;
+          item.qty += delta;
+          if(item.qty < 1) this.items = this.items.filter(entry => entry !== item);
+          this.render();
+        }
+        render(){
+          try{ localStorage.setItem("basa_cart", JSON.stringify(this.items)); }catch(e){}
+          const count = this.items.reduce((sum,item) => sum + item.qty, 0);
+          const total = this.items.reduce((sum,item) => sum + item.price * item.qty, 0);
+          $("#cartCount").textContent = count;
+          $("#cartItems").innerHTML = this.items.length
+            ? this.items.map(item => `<li style="display:grid;grid-template-columns:1fr auto;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:1rem"><div><strong>${item.name}</strong><small style="display:block;color:var(--muted)">${item.size?`Talla ${item.size} · `:""}$${item.price.toFixed(2)}</small></div><div><button data-key="${item.key}" data-delta="-1" style="background:transparent;border:1px solid var(--line);border-radius:6px;width:26px;height:26px">−</button> ${item.qty} <button data-key="${item.key}" data-delta="1" style="background:transparent;border:1px solid var(--line);border-radius:6px;width:26px;height:26px">+</button></div></li>`).join("")
+            : '<li class="cart-empty"><p>Tu carrito está vacío.</p></li>';
+          $("#cartTotal").innerHTML = `<span>Total</span><span>$${total.toFixed(2)}</span>`;
+          $("#checkout").disabled = !count;
+        }
+        checkout(){
+          if(!this.items.length) return;
+          const lines = this.items.map(item => `${item.qty}x ${item.name}${item.size?` (${item.size})`:""} — $${(item.price*item.qty).toFixed(2)}`);
+          const name = $("#cartName").value.trim(), note = $("#cartNote").value.trim();
+          const total = this.items.reduce((sum,item) => sum + item.price * item.qty, 0);
+          const message = `Hola BASA.R3X, quiero pedir merch:\n\n${lines.join("\n")}\n\nTotal: $${total.toFixed(2)}${name?`\nNombre: ${name}`:""}${note?`\nEntrega: ${note}`:""}`;
+          window.open(`https://wa.me/593991980908?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+        }
+      }
 
-        <div id="more-tracks" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 transition-all duration-500">
-            <div class="elegant-panel p-4 rounded-xl">
-                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 04</p>
-                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/0Fz4TnqRnpPK2wtMfgt3Jt?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-            </div>
-            <div class="elegant-panel p-4 rounded-xl">
-                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 05</p>
-                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/6oqguLZVMIYaIT7PymSyuK?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-            </div>
-            <div class="elegant-panel p-4 rounded-xl">
-                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 06</p>
-                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/00v1tLZnH6a63XsHBTZuuh?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-            </div>
-            <div class="elegant-panel p-4 rounded-xl">
-                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 07</p>
-                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/2kO5lMYaFwUooXRepSuf2M?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-            </div>
-            <div class="elegant-panel p-4 rounded-xl">
-                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 08</p>
-                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/6k2QjAkZSStMwQKO6FsHtz?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-            </div>
-            <div class="elegant-panel p-4 rounded-xl">
-                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 09</p>
-                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/1ySwLF5OxLwPYw1Y4aszX6?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-            </div>
-            <div class="elegant-panel p-4 rounded-xl">
-                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 10</p>
-                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/5zcsfJabiMrNwroXzobn3l?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-            </div>
-            <div class="elegant-panel p-4 rounded-xl">
-                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 11</p>
-                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/1ibNKlq412eZCO3b8u3Pjv?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
-            </div>
-        </div>
-        
-        <div class="text-center mt-12 flex flex-col sm:flex-row justify-center gap-4 px-4">
-            <button id="toggle-tracks-btn" onclick="toggleTracks()" class="btn-outline w-full sm:w-auto">
-                Catálogo Completo (+8)
-            </button>
-            <a href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" class="btn-outline border-white/20 hover:border-lawRed w-full sm:w-auto">
-                Abrir Spotify <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
-            </a>
-        </div>
-    </section>
+      function renderMerch(){
+        $("#merchGrid").innerHTML = MERCH.map(product => `
+          <article class="product" data-id="${product.id}">
+            <div class="product-visual">${product.icon}</div>
+            <h3>${product.name}</h3>
+            <p class="product-price">$${product.price.toFixed(2)}</p>
+            ${product.sizes.length ? `<div class="sizes">${product.sizes.map((size,index)=>`<button class="size${index===0?" active":""}" type="button" data-size="${size}">${size}</button>`).join("")}</div>` : ""}
+            <button class="button add-product magnetic" type="button">Añadir al carrito</button>
+          </article>`).join("");
+      }
 
-    <!-- SHOWS SECTION -->
-    <section id="shows" class="py-24 px-6 max-w-5xl mx-auto relative z-10 reveal border-t border-white/5">
-        <div class="text-center mb-16 px-4">
-            <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Shows en Vivo</h2>
-            <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
-            <p class="font-ux text-xs tracking-[0.3em] uppercase text-gray-500 font-light mt-4">Fechas Confirmadas</p>
-        </div>
+      class SmokeScene {
+        constructor(canvas){
+          this.canvas = canvas; this.raf = 0; this.velocity = 0; this.running = false;
+          if(reduced || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) || !window.THREE){ this.destroy(); return; }
+          this.scene = new THREE.Scene(); this.camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+          this.renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:false,powerPreference:"low-power"});
+          this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+          this.material = new THREE.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{uTime:{value:0},uVelocity:{value:0},uResolution:{value:new THREE.Vector2(innerWidth,innerHeight)}},vertexShader:`void main(){gl_Position=vec4(position,1.0);}`,fragmentShader:`precision mediump float;uniform float uTime;uniform float uVelocity;uniform vec2 uResolution;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*noise(p);p=p*2.03+11.7;a*=.5;}return v;}void main(){vec2 uv=gl_FragCoord.xy/uResolution.xy;vec2 p=(uv-.5)*vec2(uResolution.x/uResolution.y,1.)*2.2;float speed=clamp(abs(uVelocity)*.012,0.,1.5);p.y-=uTime*(.035+speed*.06);p.x+=sin(p.y*1.8+uTime*.12)*.13;float n=fbm(p+fbm(p*1.7+uTime*.03));float smoke=smoothstep(.43,.82,n)*(.32+speed*.14);vec3 blood=vec3(.48,.008,.025);float vignette=1.-smoothstep(.25,1.,length(uv-.5));gl_FragColor=vec4(blood,smoke*vignette);}`});
+          this.mesh = new THREE.Mesh(new THREE.PlaneGeometry(2,2),this.material); this.scene.add(this.mesh);
+          this.resize = () => { this.renderer.setSize(innerWidth,innerHeight,false); this.material.uniforms.uResolution.value.set(innerWidth,innerHeight); };
+          addEventListener("resize",this.resize,{passive:true}); this.resize(); this.start();
+        }
+        setVelocity(value){ this.velocity = value || 0; }
+        frame = time => { if(!this.running) return; this.material.uniforms.uTime.value = time * .001; this.material.uniforms.uVelocity.value += (this.velocity - this.material.uniforms.uVelocity.value) * .08; this.renderer.render(this.scene,this.camera); this.raf = requestAnimationFrame(this.frame); };
+        start(){ if(!this.renderer || this.running || !pageVisible) return; this.running = true; this.raf = requestAnimationFrame(this.frame); }
+        stop(){ this.running = false; cancelAnimationFrame(this.raf); }
+        destroy(){ this.stop(); if(this.mesh){ this.mesh.geometry.dispose(); this.material.dispose(); this.renderer.dispose(); } this.canvas.style.display = "none"; removeEventListener("resize",this.resize); }
+      }
 
-        <div class="elegant-panel rounded-xl overflow-hidden divide-y divide-white/5">
-            <div class="show-row flex flex-col md:flex-row justify-between items-center p-6 gap-6">
-                <div class="flex flex-col md:flex-row gap-4 md:gap-10 w-full md:w-auto text-center md:text-left items-center">
-                    <div class="font-elegant text-4xl md:text-3xl text-lawRed font-bold min-w-[120px]">07 DIC</div>
-                    <div>
-                        <h4 class="font-ux font-bold text-lg md:text-xl uppercase tracking-wider">Cuenca, Ecuador</h4>
-                        <p class="font-ux text-xs text-gray-400 mt-1">Club Nocturno / Show en Vivo</p>
-                    </div>
-                </div>
-                <a href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20reservar%20entradas%20para%20el%20show%20del%207%20de%20diciembre%20en%20Cuenca" target="_blank" class="btn-outline w-full md:w-auto text-center">Reservar Access</a>
-            </div>
-            
-            <div class="show-row flex flex-col md:flex-row justify-between items-center p-6 gap-6">
-                <div class="flex flex-col md:flex-row gap-4 md:gap-10 w-full md:w-auto text-center md:text-left items-center">
-                    <div class="font-elegant text-4xl md:text-3xl text-gray-400 font-bold min-w-[120px]">11 NOV</div>
-                    <div>
-                        <h4 class="font-ux font-bold text-lg md:text-xl uppercase tracking-wider text-gray-300">Guayaquil, Ecuador</h4>
-                        <p class="font-ux text-xs text-gray-500 mt-1">Lugar por anunciar</p>
-                    </div>
-                </div>
-                <span class="btn-outline border-white/20 text-gray-400 w-full md:w-auto text-center select-none">Por Anunciar</span>
-            </div>
-            
-            <div class="show-row flex flex-col md:flex-row justify-between items-center p-6 gap-6">
-                <div class="flex flex-col md:flex-row gap-4 md:gap-10 w-full md:w-auto text-center md:text-left items-center">
-                    <div class="font-elegant text-4xl md:text-3xl text-gray-400 font-bold min-w-[120px]">ENE</div>
-                    <div>
-                        <h4 class="font-ux font-bold text-lg md:text-xl uppercase tracking-wider text-gray-300">Quito, Ecuador</h4>
-                        <p class="font-ux text-xs text-gray-500 mt-1">Lugar por anunciar</p>
-                    </div>
-                </div>
-                <span class="btn-outline border-white/20 text-gray-400 w-full md:w-auto text-center select-none">Próximamente</span>
-            </div>
-        </div>
-    </section>
+      function initScroll(){
+        if(!window.gsap || !window.ScrollTrigger) return;
+        gsap.registerPlugin(ScrollTrigger);
+        if(window.Lenis && !reduced){
+          lenis = new Lenis({autoRaf:true,lerp:.08,smoothWheel:true});
+          lenis.on("scroll", event => { ScrollTrigger.update(); if(smoke) smoke.setVelocity(event.velocity); });
+        }
+        $$("a[href^='#']").forEach(anchor => anchor.addEventListener("click", event => {
+          const id = anchor.getAttribute("href");
+          const target = id === "#top" ? 0 : $(id);
+          if(target === null) return;
+          event.preventDefault(); closeMenu();
+          lenis ? lenis.scrollTo(target,{offset:-72,duration:1.3}) : (id === "#top" ? scrollTo(0,0) : target.scrollIntoView());
+        }));
+        if(reduced) return;
 
-    <!-- VIDEOS SECTION -->
-    <section id="videos" class="py-24 px-6 bg-black/60 border-y border-white/5 relative z-10 backdrop-blur-sm reveal">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 text-center px-4">
-                <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Registro Visual</h2>
-                <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
-                <p class="font-ux text-xs tracking-[0.3em] uppercase text-gray-500 font-light mt-4">Videografía Oficial</p>
-            </div>
+        $$(".split-title,.split-copy").forEach((element, i) => {
+          const text = element.textContent.trim();
+          element.setAttribute("aria-label", text);
+          element.innerHTML = text.split(/\s+/).map(word => `<span class="word" aria-hidden="true"><span class="word-inner">${word}</span></span>`).join(" ");
+          gsap.from(element.querySelectorAll(".word-inner"), {
+            y: 40, opacity: 0,
+            duration: i % 2 === 0 ? 0.9 : 0.4,
+            stagger: i % 3 === 0 ? 0.05 : 0.02,
+            ease: i % 2 === 0 ? "power4.out" : "power3.out",
+            scrollTrigger: { trigger: element, start: "top 86%", once: true }
+          });
+        });
 
-            <div class="flex flex-col gap-6">
-                <div class="elegant-panel aspect-video rounded-xl overflow-hidden p-1 lg:w-4/5 mx-auto w-full">
-                    <iframe loading="lazy" class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/Plt1SrU21qQ" title="Video Principal BASA.R3X" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/bEUdUMIZ2J4" frameborder="0" allowfullscreen></iframe></div>
-                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/eb-YBCDLS5k" frameborder="0" allowfullscreen></iframe></div>
-                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/OdnRu6pU23U" frameborder="0" allowfullscreen></iframe></div>
-                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/lnMgugY8yvI" frameborder="0" allowfullscreen></iframe></div>
-                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/3w3-PVope9c" frameborder="0" allowfullscreen></iframe></div>
-                    
-                    <div class="elegant-panel rounded-lg p-6 flex flex-col justify-center items-center text-center">
-                        <i class="fa-brands fa-youtube text-4xl md:text-5xl text-lawRed mb-3"></i>
-                        <p class="font-elegant text-lg md:text-xl uppercase tracking-wider mb-2">Canal Oficial</p>
-                        <a href="https://youtube.com/@basa.r3x" target="_blank" class="btn-outline text-xs mt-2 w-full sm:w-auto">Suscribirse</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        $$(".image-reveal").forEach(image => {
+          gsap.fromTo(image,
+            { scale: 0.88, opacity: 0.35 },
+            { scale: 1, opacity: 1, ease: "none",
+              scrollTrigger: { trigger: image, start: "top 95%", end: "center 55%", scrub: 0.6 } });
+        });
 
-    <!-- GALLERY SECTION -->
-    <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto relative z-10 reveal">
-        <div class="mb-16 text-center px-4">
-            <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Galería</h2>
-            <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
-            <p class="font-ux text-xs tracking-[0.3em] uppercase text-gray-500 font-light mt-4">Archivo Fotográfico</p>
-        </div>
+        gsap.from(".hero-title .line", { yPercent: 95, opacity: 0, duration: 1.2, stagger: 0.1, ease: "expo.out" });
+        gsap.from(".hero-slogan", { y: 24, opacity: 0, duration: 0.7, ease: "power3.out", delay: 0.5 });
+        gsap.from(".hero-actions .button", { y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: "back.out(1.6)", delay: 0.65 });
+        gsap.to(".hero-media img", { yPercent: 9, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
 
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
-            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
-                <img loading="lazy" src="https://i.pinimg.com/736x/f5/7c/f5/f57cf513675e19aea23d71738b2bb048.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
-            </div>
-            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
-                <img loading="lazy" src="https://i.pinimg.com/736x/fe/d7/cc/fed7cc6e245357f4487d65c956dfe1ff.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
-            </div>
-            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
-                <img loading="lazy" src="https://i.pinimg.com/736x/6a/85/f8/6a85f8fa6be9f3b767295d0078ed2e61.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
-            </div>
-            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
-                <img loading="lazy" src="https://i.pinimg.com/736x/5a/eb/e5/5aebe52ce1aaa1b5aa7f70db04f4ec39.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
-            </div>
-            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
-                <img loading="lazy" src="https://i.pinimg.com/736x/97/8e/17/978e17b41f9af5c48eb3f0c6f863ac83.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
-            </div>
-            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
-                <img loading="lazy" src="https://i.pinimg.com/736x/54/d9/31/54d931b90bf5a4ed0708785016ccfcbd.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-24 px-6 max-w-5xl mx-auto relative z-10 reveal">
-        <div class="mb-16 text-center px-4">
-            <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Booking & Contacto</h2>
-            <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
-            <p class="font-ux text-xs md:text-sm text-gray-400 mt-6 max-w-xl mx-auto font-light leading-relaxed">
-                Para shows en vivo, contrataciones, producciones y colaboraciones.
-            </p>
-        </div>
-
-        <div class="elegant-panel p-6 md:p-12 rounded-2xl relative overflow-hidden bg-black/60 backdrop-blur-md">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-lawRed opacity-10 blur-[100px] pointer-events-none"></div>
-
-            <div class="flex flex-col md:flex-row gap-10 md:gap-12 relative z-10">
-                
-                <div class="w-full md:w-1/3 flex flex-col justify-center gap-6 border-b md:border-b-0 md:border-r border-white/10 pb-8 md:pb-0 md:pr-8">
-                    <div>
-                        <h4 class="font-ux text-[10px] tracking-[0.2em] uppercase text-lawRed font-bold mb-1">Management & Correo</h4>
-                        <a href="mailto:basa11business@outlook.com" class="font-elegant text-sm md:text-base hover:text-lawRed transition-colors break-all md:break-normal">basa11business@outlook.com</a>
-                    </div>
-                    <div>
-                        <h4 class="font-ux text-[10px] tracking-[0.2em] uppercase text-lawRed font-bold mb-1">WhatsApp Directo</h4>
-                        <a href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20cotizar%20un%20show" target="_blank" class="font-elegant text-sm md:text-base hover:text-lawRed transition-colors flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-green-500"></i> +593 99 198 0908
-                        </a>
-                    </div>
-                    <div>
-                        <h4 class="font-ux text-[10px] tracking-[0.2em] uppercase text-lawRed font-bold mb-1">Base Operativa</h4>
-                        <p class="font-elegant text-sm md:text-base text-gray-300">Cuenca, Ecuador</p>
-                    </div>
-
-                    <div class="pt-4 border-t border-white/10">
-                        <h4 class="font-ux text-[10px] tracking-[0.2em] uppercase text-lawRed font-bold mb-3">Comunidad</h4>
-                        <div class="flex flex-wrap gap-2 md:gap-3">
-                            <a href="https://chat.whatsapp.com/HGtAcvyshG42Mky1e3L6tx" target="_blank" class="p-2 px-3 bg-white/5 hover:bg-lawRed/20 rounded-md text-xs font-semibold flex items-center gap-2 transition-all flex-grow justify-center sm:flex-grow-0">
-                                <i class="fa-brands fa-whatsapp text-green-400"></i> VIP
-                            </a>
-                            <a href="https://t.me/+jtmWNN4HTn04ODk5" target="_blank" class="p-2 px-3 bg-white/5 hover:bg-lawRed/20 rounded-md text-xs font-semibold flex items-center gap-2 transition-all flex-grow justify-center sm:flex-grow-0">
-                                <i class="fa-brands fa-telegram text-sky-400"></i> TG
-                            </a>
-                            <a href="https://kick.com/basar3x" target="_blank" class="p-2 px-3 bg-white/5 hover:bg-lawRed/20 rounded-md text-xs font-semibold flex items-center gap-2 transition-all flex-grow justify-center sm:flex-grow-0">
-                                <i class="fa-solid fa-gamepad text-green-400"></i> Kick
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-full md:w-2/3">
-                    <form action="mailto:basa11business@outlook.com" method="post" enctype="text/plain" class="flex flex-col gap-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <input type="text" name="Nombre" placeholder="Nombre o Promotora" class="input-elegant text-sm md:text-base" required>
-                            <input type="email" name="Correo" placeholder="Correo Electrónico" class="input-elegant text-sm md:text-base" required>
-                        </div>
-                        <input type="text" name="Asunto" placeholder="Asunto (Booking / Colab)" class="input-elegant text-sm md:text-base" required>
-                        <textarea name="Mensaje" placeholder="Detalles de la propuesta..." rows="4" class="input-elegant text-sm md:text-base resize-none mt-2" required></textarea>
-                        
-                        <div class="mt-4 text-center md:text-right">
-                            <button type="submit" class="btn-elegant text-[10px] py-3 px-8 w-full md:w-auto">Enviar Propuesta</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-24 border-t border-white/5 text-center bg-lawDark/95 backdrop-blur-md relative z-10 overflow-hidden reveal">
-        <!-- Texto Gigante adaptativo -->
-        <h1 class="font-elegant text-hero-title text-white opacity-5 mb-4 pointer-events-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 whitespace-nowrap">BASA.R3X</h1>
-        
-        <div class="relative z-10 flex flex-col items-center px-4">
-            <i class="fa-solid fa-arrow-up text-lawRed text-2xl md:text-3xl mb-6 opacity-80 hover:opacity-100 hover:scale-125 transition-all cursor-pointer p-4" onclick="window.scrollTo(0,0)" title="Volver arriba"></i>
-            <h2 class="font-elegant text-3xl md:text-4xl tracking-[0.3em] text-white/90 mb-3">BASA.R3X</h2>
-            <p class="font-ux text-xs md:text-sm uppercase tracking-[0.4em] text-lawRed mb-8">Tu Professor</p>
-            
-            <div class="flex gap-6 mb-10 text-gray-400 text-xl md:text-2xl">
-                <a href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" class="hover:text-lawRed transition-colors"><i class="fa-brands fa-spotify"></i></a>
-                <a href="https://youtube.com/@basa.r3x" target="_blank" class="hover:text-lawRed transition-colors"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.instagram.com/diego.r3x" target="_blank" class="hover:text-lawRed transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@basa.r3x" target="_blank" class="hover:text-lawRed transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-            </div>
-
-            <p class="font-ux text-[10px] md:text-xs uppercase tracking-[0.2em] text-gray-600">
-                © 2026 BASA.R3X. Heart Concept Edition. Cuenca, Ecuador.
-            </p>
-        </div>
-    </footer>
-
-    <!-- SCRIPTS MÁSTER -->
-    <script>
-        // Lógica Menú Móvil
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function toggleMobileMenu() {
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('hidden');
-                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-xmark');
-                document.body.style.overflow = 'hidden';
-            } else {
-                mobileMenu.classList.add('opacity-0');
-                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
-                menuIcon.classList.remove('fa-xmark');
-                menuIcon.classList.add('fa-bars');
-                document.body.style.overflow = 'auto';
-            }
+        const videos = $$(".video-card");
+        if(videos.length && innerWidth > 900){
+          gsap.from(videos, { y: 100, opacity: 0.25, stagger: 0.14, ease: "power3.out",
+            scrollTrigger: { trigger: ".video-rail", start: "top 82%", end: "bottom 65%", scrub: 0.7 } });
         }
 
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        mobileLinks.forEach(link => { link.addEventListener('click', toggleMobileMenu); });
+        $$(".release-card").forEach((card, i) => {
+          gsap.from(card, { y: 60, opacity: 0, duration: 0.55 + i * 0.08, ease: "power4.out",
+            scrollTrigger: { trigger: card, start: "top 92%", once: true } });
+        });
+        $$(".product").forEach((card, i) => {
+          gsap.from(card, { y: 70, opacity: 0, duration: 1.1, delay: i * 0.09, ease: "expo.out",
+            scrollTrigger: { trigger: card, start: "top 92%", once: true } });
+        });
 
-        // Toggle Singles
-        function toggleTracks() {
-            const moreTracks = document.getElementById('more-tracks');
-            const btn = document.getElementById('toggle-tracks-btn');
-            if (moreTracks.classList.contains('hidden')) {
-                moreTracks.classList.remove('hidden');
-                btn.innerText = 'Mostrar Menos';
-            } else {
-                moreTracks.classList.add('hidden');
-                btn.innerText = 'Catálogo Completo (+8)';
-            }
-        }
+        $$(".gallery-item").forEach((item, i) => {
+          gsap.from(item, { y: 40 + (i % 3) * 18, opacity: 0, duration: 0.85, delay: (i % 2) * 0.06, ease: "power3.out",
+            scrollTrigger: { trigger: item, start: "top 94%", once: true } });
+        });
+      }
 
-        function startApp() {
-            // Partículas
-            const container = document.getElementById('particles-container');
-            if (container && container.children.length === 0) {
-                // Reducimos cantidad en móviles para mejor rendimiento
-                const isMobile = window.innerWidth < 768;
-                const particleCount = isMobile ? 25 : 45; 
-                for (let i = 0; i < particleCount; i++) {
-                    let particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    let size = Math.random() * 3 + 1; 
-                    let posX = Math.random() * 100; 
-                    let delay = Math.random() * 8; 
-                    let duration = Math.random() * 15 + 10; 
-                    let isRed = Math.random() > 0.6; 
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.left = `${posX}vw`;
-                    particle.style.animationDelay = `${delay}s`;
-                    particle.style.animationDuration = `${duration}s`;
-                    if (isRed) {
-                        particle.style.backgroundColor = '#990000';
-                        particle.style.boxShadow = '0 0 8px #990000';
-                    } else {
-                        particle.style.backgroundColor = '#444444'; 
-                    }
-                    container.appendChild(particle);
-                }
-            }
+      function initMagnetic(){
+        if(!finePointer || reduced || !window.gsap) return;
+        $$(".magnetic").forEach(button => {
+          const onMove = event => {
+            const rect = button.getBoundingClientRect();
+            const dx = event.clientX - (rect.left + rect.width/2);
+            const dy = event.clientY - (rect.top + rect.height/2);
+            const distance = Math.hypot(dx, dy);
+            if(distance < 90) gsap.to(button, { "--bx": `${dx*.28}px`, "--by": `${dy*.28}px`, duration: 0.3, ease: "power3.out", overwrite: true });
+            else reset();
+          };
+          const reset = () => gsap.to(button, { "--bx": "0px", "--by": "0px", duration: 0.85, ease: "elastic.out(1, .3)", overwrite: true });
+          addEventListener("mousemove", onMove, { passive: true });
+          button.addEventListener("mouseleave", reset);
+        });
+      }
 
-            // Scroll Reveal con IntersectionObserver (Más eficiente que onscroll)
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
-            
-            const revealObserver = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                });
-            }, revealOptions);
-
-            reveals.forEach(reveal => {
-                revealObserver.observe(reveal);
+      window.onSpotifyIframeApiReady = (IFrameAPI) => {
+        const controllers = [];
+        const embeds = $$("[data-spotify-uri]");
+        embeds.forEach(el => {
+          const options = { uri: el.dataset.spotifyUri, width: "100%", height: 152 };
+          IFrameAPI.createController(el, options, (controller) => {
+            controllers.push(controller);
+            controller.addListener("playback_update", (e) => {
+              if(!e.data) return;
+              if(!e.data.isPaused && !e.data.isBuffering){
+                controllers.forEach(other => { if(other !== controller) other.pause(); });
+              }
             });
-        }
+          });
+        });
+      };
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startApp);
-        } else {
-            startApp();
-        }
-    </script>
+      function openCart(open){
+        $("#cart").classList.toggle("open", open);
+        $("#cartOverlay").classList.toggle("open", open);
+        $("#cart").setAttribute("aria-hidden", String(!open));
+        document.body.classList.toggle("cart-open", open);
+        open ? lenis?.stop() : lenis?.start();
+      }
+      function closeMenu(){
+        $("#mobileMenu").classList.remove("open");
+        $("#mobileMenu").setAttribute("aria-hidden", "true");
+        $("#menuToggle").setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open");
+        lenis?.start();
+      }
+      function toggleMenu(){
+        const open = !$("#mobileMenu").classList.contains("open");
+        $("#mobileMenu").classList.toggle("open", open);
+        $("#mobileMenu").setAttribute("aria-hidden", String(!open));
+        $("#menuToggle").setAttribute("aria-expanded", String(open));
+        document.body.classList.toggle("menu-open", open);
+        open ? lenis?.stop() : lenis?.start();
+      }
+
+      function initUI(){
+        $("#menuToggle").addEventListener("click", toggleMenu);
+        $("#cartOpen").addEventListener("click", () => openCart(true));
+        $("#cartClose").addEventListener("click", () => openCart(false));
+        $("#cartOverlay").addEventListener("click", () => openCart(false));
+        const videoRail = $("#videoRail");
+        const moveVideo = direction => {
+          const card = $(".video-card", videoRail);
+          if(card) videoRail.scrollBy({ left: direction * (card.getBoundingClientRect().width + 16), behavior: reduced ? "auto" : "smooth" });
+        };
+        $("#videoPrev").addEventListener("click", () => moveVideo(-1));
+        $("#videoNext").addEventListener("click", () => moveVideo(1));
+        addEventListener("keydown", event => { if(event.key === "Escape"){ closeMenu(); openCart(false); } });
+        $("#contactForm").addEventListener("submit", event => {
+          event.preventDefault();
+          const data = new FormData(event.currentTarget);
+          const subject = encodeURIComponent(data.get("Asunto"));
+          const body = encodeURIComponent(`De: ${data.get("Nombre")} (${data.get("Correo")})\n\n${data.get("Mensaje")}`);
+          location.href = `mailto:basa11business@outlook.com?subject=${subject}&body=${body}`;
+        });
+      }
+
+      function runLoader(){
+        const loader = $("#loader"), path = $(".loader-ecg path"), percent = $("#bootPercent"), text = $("#bootText");
+        const phrase = "SISTEMA INICIADO"; let chars = 0;
+        if(reduced || !window.gsap){ text.textContent = phrase; percent.textContent = "100"; loader.remove(); return Promise.resolve(); }
+        return new Promise(resolve => {
+          const typer = setInterval(() => { text.textContent = phrase.slice(0, ++chars); if(chars >= phrase.length) clearInterval(typer); }, 70);
+          const state = { value: 0 };
+          const tl = gsap.timeline({ onComplete: () => { loader.remove(); resolve(); } });
+          tl.to(path, { strokeDashoffset: 0, duration: 1.55, ease: "power2.inOut" }, 0)
+            .to(state, { value: 100, duration: 1.55, ease: "power1.inOut", onUpdate: () => percent.textContent = Math.round(state.value) }, 0)
+            .to(loader, { clipPath: "circle(0% at 50% 50%)", duration: 1.05, ease: "power4.inOut" }, 1.7);
+        });
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        pageVisible = !document.hidden;
+        if(pageVisible){ smoke?.start(); if(!reduced) gsap.globalTimeline.resume(); }
+        else { smoke?.stop(); gsap?.globalTimeline.pause(); }
+      });
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        renderMerch();
+        initUI();
+        new Cart();
+        smoke = new SmokeScene($("#webgl"));
+        initScroll();
+        initMagnetic();
+        ScrollTrigger?.refresh();
+        await runLoader();
+      });
+    })();
+  </script>
 </body>
 </html>
