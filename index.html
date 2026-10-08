@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASA.R3X | Tu Professor</title>
+    
+    <!-- Meta Tags Profesionales -->
+    <meta name="description" content="BASA.R3X. Tu Professor. Fusionando el Rock con el pulso urbano desde la Calle Larga, Cuenca, Ecuador.">
+    <meta property="og:title" content="BASA.R3X | Tu Professor">
+    <meta property="og:description" content="Escribir sin miedo a la funa y hacerlo sonar impecable. Teacher y gymrat.">
+    <meta property="og:image" content="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cinzel y Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lawRed: '#990000',
+                        lawDark: '#080808',
+                        lawWhite: '#F4F4F4',
+                    },
+                    fontFamily: {
+                        elegant: ['Cinzel', 'serif'],
+                        ux: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background-color: #080808;
+            color: #F4F4F4;
+            overflow-x: hidden;
+        }
+
+        /* --- OVERLAY DE FONDO MEJORADO --- */
+        .room-bg {
+            position: fixed; top: 50%; left: 50%; width: 100vw; height: 100vh;
+            transform: translate(-50%, -50%); 
+            /* Se aumentó la intensidad del rojo y se ajustó para que sea más visible en Desktop y Móvil */
+            background: radial-gradient(circle at center, rgba(153, 0, 0, 0.18) 0%, rgba(8, 8, 8, 0.95) 60%, #080808 100%);
+            z-index: -1; pointer-events: none;
+        }
+
+        /* Viñeta para los bordes */
+        .vignette-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            box-shadow: inset 0 0 150px rgba(0,0,0,0.9);
+            z-index: -1; pointer-events: none;
+        }
+
+        /* --- ANIMACIÓN HERO --- */
+        .hero-visible { animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SCROLL REVEAL --- */
+        .reveal {
+            opacity: 0; transform: translateY(35px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            will-change: opacity, transform;
+        }
+        .reveal.active { opacity: 1 !important; transform: translateY(0) !important; }
+
+        /* --- MARQUEE INFINITO --- */
+        .marquee-container { overflow: hidden; white-space: nowrap; width: 100%; display: flex; }
+        .marquee-content { display: flex; animation: marquee 22s linear infinite; will-change: transform; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- PARTÍCULAS / CENIZAS --- */
+        #particles-container {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; overflow: hidden; background-color: transparent; pointer-events: none;
+        }
+        .particle { position: absolute; border-radius: 50%; opacity: 0; bottom: -10px; animation: float-up linear infinite; will-change: transform, opacity; }
+        @keyframes float-up {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.5; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Botones */
+        .btn-elegant {
+            position: relative; display: inline-block; padding: 1rem 2.5rem;
+            font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 0.2em;
+            text-transform: uppercase; color: #F4F4F4;
+            border: 1px solid rgba(244, 244, 244, 0.3); background: transparent;
+            overflow: hidden; transition: all 0.4s ease; z-index: 10;
+        }
+        .btn-elegant::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            width: 0; height: 0; background: rgba(153, 0, 0, 0.85);
+            border-radius: 50%; transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease; z-index: -1;
+        }
+        .btn-elegant:hover::before { width: 320px; height: 320px; }
+        .btn-elegant:hover { border-color: #990000; color: #fff; box-shadow: 0 0 20px rgba(153, 0, 0, 0.5); }
+
+        .btn-outline {
+            display: inline-block; padding: 0.75rem 1.8rem;
+            font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: #F4F4F4;
+            border: 1px solid #990000; border-radius: 6px; transition: all 0.3s ease; cursor: pointer;
+        }
+        .btn-outline:hover { background: #990000; color: #fff; box-shadow: 0 0 15px rgba(153,0,0,0.4); }
+
+        .heart-divider { display: flex; align-items: center; justify-content: center; gap: 1rem; opacity: 0.5; margin: 2rem 0; }
+        .heart-divider::before, .heart-divider::after { content: ''; width: 50px; height: 1px; background: #990000; }
+
+        .elegant-panel {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px); transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+        .elegant-panel:hover { transform: translateY(-5px); border-color: rgba(153, 0, 0, 0.5); }
+
+        .spotify-container { width: 100%; height: 152px; border-radius: 12px; overflow: hidden; background: #121212; }
+        .title-glow { text-shadow: 0 0 35px rgba(153, 0, 0, 0.6); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #990000; }
+
+        .input-elegant {
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 0; color: #F4F4F4; font-family: 'Montserrat', sans-serif; font-weight: 300; transition: border-color 0.3s ease;
+        }
+        .input-elegant:focus { outline: none; border-bottom-color: #990000; }
+        .show-row { border-bottom: 1px solid rgba(255, 255, 255, 0.08); transition: background 0.3s ease; }
+        .show-row:hover { background: rgba(153, 0, 0, 0.08); }
+
+        /* Tipografía Fluida (clamp) para evitar tamaños gigantes en móviles */
+        .text-hero-title { font-size: clamp(3.5rem, 8vw, 10rem); line-height: 1; }
+        .text-section-title { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; }
+        .text-about-title { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; }
+    </style>
+</head>
+<body class="font-ux selection:bg-lawRed selection:text-white relative">
+
+    <!-- Fondo Mejorado -->
+    <div id="particles-container"></div>
+    <div class="room-bg"></div>
+    <div class="vignette-overlay"></div>
+
+    <!-- Barra de Navegación -->
+    <nav class="fixed top-0 w-full z-50 bg-lawDark/80 backdrop-blur-md border-b border-white/5 px-6 md:px-12 py-4 flex justify-between items-center transition-all">
+        <a href="#" class="font-elegant text-xl md:text-2xl font-bold tracking-[0.2em] relative z-50">1<span class="text-lawRed">.</span>11</a>
+        
+        <!-- Menú Desktop -->
+        <div class="hidden lg:flex gap-8 font-ux text-xs uppercase tracking-[0.2em] font-semibold text-gray-400">
+            <a href="#about" class="hover:text-lawRed transition-colors">Tu Professor</a>
+            <a href="#music" class="hover:text-lawRed transition-colors">Discografía</a>
+            <a href="#shows" class="hover:text-lawRed transition-colors">Shows</a>
+            <a href="#videos" class="hover:text-lawRed transition-colors">Visuales</a>
+            <a href="#gallery" class="hover:text-lawRed transition-colors">Galería</a>
+            <a href="#contact" class="hover:text-lawRed transition-colors">Booking</a>
+        </div>
+        
+        <!-- Iconos Sociales Desktop -->
+        <div class="hidden lg:flex items-center gap-4">
+            <a href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" class="text-xl hover:text-lawRed transition-colors" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://www.instagram.com/diego.r3x" target="_blank" class="text-xl hover:text-lawRed transition-colors" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://youtube.com/@basa.r3x" target="_blank" class="text-xl hover:text-lawRed transition-colors" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
+        <!-- Botón Hamburguesa Móvil -->
+        <button id="mobile-menu-btn" class="lg:hidden text-2xl text-white relative z-50 focus:outline-none">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+        </button>
+    </nav>
+
+    <!-- Menú Móvil Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-lawDark/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 opacity-0 transition-opacity duration-300 text-center">
+        <a href="#about" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Tu Professor</a>
+        <a href="#music" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Discografía</a>
+        <a href="#shows" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Shows</a>
+        <a href="#videos" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Visuales</a>
+        <a href="#gallery" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors">Galería</a>
+        <a href="#contact" class="mobile-link font-elegant text-xl md:text-2xl tracking-[0.2em] uppercase hover:text-lawRed transition-colors text-lawRed">Booking</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative z-10 hero-visible pt-16">
+        <p class="font-ux text-xs md:text-sm tracking-[0.5em] uppercase text-lawRed mb-4 font-bold">
+            DIEGO GUANOQUIZA
+        </p>
+        <!-- Tipografía adaptativa para el Hero -->
+        <h1 class="font-elegant text-hero-title mb-2 title-glow">
+            BASA.R3X
+        </h1>
+        <div class="heart-divider w-full max-w-xs mx-auto my-8">
+            <i class="fa-solid fa-heart text-lawRed text-sm"></i>
+        </div>
+        <div class="flex gap-4 flex-col sm:flex-row mt-4">
+            <!-- Botón redirigido a Tu Professor (About) -->
+            <a href="#about" class="btn-elegant w-full sm:w-auto">Entrar al Room</a>
+            <a href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20cotizar%20un%20show%20/%20colaboraci%C3%B3n" target="_blank" class="btn-elegant bg-lawRed/20 w-full sm:w-auto" style="border-color: #990000;">Booking Directo</a>
+        </div>
+    </header>
+
+    <!-- Cinta Marquee -->
+    <div class="marquee-container py-4 border-y border-white/5 bg-lawDark/40 backdrop-blur-sm relative z-10">
+        <div class="marquee-content font-elegant text-xl md:text-2xl tracking-[0.3em] text-gray-500 uppercase">
+            <span class="px-8">BASA.R3X • TU PROFESSOR • ROCK & TRAP • DRILL • REGGAETON •</span>
+            <span class="px-8">BASA.R3X • TU PROFESSOR • ROCK & TRAP • DRILL • REGGAETON •</span>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION (Ahora en segunda posición) -->
+    <section id="about" class="py-24 px-6 bg-black/40 border-b border-white/5 relative z-10 backdrop-blur-sm reveal">
+        <div class="max-w-6xl mx-auto flex flex-col-reverse md:flex-row gap-12 md:gap-20 items-center">
+            
+            <div class="w-full md:w-1/2">
+                <h3 class="font-ux text-xs uppercase tracking-[0.4em] text-lawRed mb-3 font-bold">Diego Guanoquiza</h3>
+                <!-- Tipografía adaptativa -->
+                <h2 class="font-elegant text-about-title mb-6 uppercase tracking-[0.1em]">Tu<br>Professor</h2>
+                
+                <div class="space-y-5 font-ux text-gray-400 font-light leading-relaxed text-sm md:text-base">
+                    <p>
+                        <strong class="text-white font-medium">Diego G</strong>, bajo la identidad de <strong class="text-white font-medium">BASA.R3X</strong>, fusiona el Rock con el pulso del género urbano y la honestidad de quien aprendió a cantar en las discotecas de la Calle Larga. Su método es simple: escribir sin miedo a la funa lo que otros callan y hacerlo sonar impecable.
+                    </p>
+                    <p>
+                        Teacher y gymrat, lleva a la música la disciplina del entrenamiento y la claridad del aula. Junto a su productor Sam Music cuida cada beat y cada verso para que suenen bien y digan algo. Empieza por "Tu sonrisas!". Mijaaa.
+                    </p>
+                </div>
+                
+                <div class="mt-8 flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+                    <a href="https://drive.google.com/" target="_blank" class="btn-outline flex items-center justify-center gap-2 w-full sm:w-auto" title="Inserta aquí tu Press Kit">
+                        <i class="fa-solid fa-download"></i> Descargar Press Kit
+                    </a>
+                    <div class="flex gap-5 mt-4 sm:mt-0 items-center justify-center w-full sm:w-auto pt-1">
+                        <a href="https://www.instagram.com/diego.r3x" target="_blank" class="text-2xl text-gray-500 hover:text-white transition-transform"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@basa.r3x" target="_blank" class="text-2xl text-gray-500 hover:text-white transition-transform"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@basa.r3x" target="_blank" class="text-2xl text-gray-500 hover:text-white transition-transform"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" class="text-2xl text-gray-500 hover:text-white transition-transform"><i class="fa-brands fa-spotify"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Foto Principal con Glow -->
+            <div class="w-full md:w-1/2 relative group max-w-sm mx-auto md:mx-0">
+                <div class="absolute inset-0 bg-lawRed opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-700"></div>
+                <div class="elegant-panel p-2 rounded-2xl relative z-10 aspect-[3/4] overflow-hidden bg-black/60">
+                    <img loading="lazy" src="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg" alt="Diego Guanoquiza - Tu Professor" class="w-full h-full object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MUSIC SECTION -->
+    <section id="music" class="py-24 px-6 max-w-7xl mx-auto relative z-10 reveal">
+        <div class="text-center mb-16 px-4">
+            <!-- Tipografía adaptativa -->
+            <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Catálogo Clínico</h2>
+            <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
+            <p class="font-ux text-xs tracking-[0.3em] uppercase text-gray-500 font-light mt-4">Lanzamientos Oficiales</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="elegant-panel p-6 rounded-xl flex flex-col items-center">
+                <p class="font-ux text-xs tracking-[0.3em] text-lawRed uppercase mb-6 font-semibold">Single 01</p>
+                <div class="spotify-container">
+                    <iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/58vJUewQbH5WeKNw5vu7eM?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                </div>
+            </div>
+            <div class="elegant-panel p-6 rounded-xl flex flex-col items-center md:-translate-y-6">
+                <p class="font-ux text-xs tracking-[0.3em] text-lawRed uppercase mb-6 font-semibold">Single 02</p>
+                <div class="spotify-container">
+                    <iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/6eIo3TSigNAQZmpnD9PfPe?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                </div>
+            </div>
+            <div class="elegant-panel p-6 rounded-xl flex flex-col items-center">
+                <p class="font-ux text-xs tracking-[0.3em] text-lawRed uppercase mb-6 font-semibold">Single 03</p>
+                <div class="spotify-container">
+                    <iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/3vXxJXa1j9QXFTyGSJa2Ru?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="more-tracks" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 transition-all duration-500">
+            <div class="elegant-panel p-4 rounded-xl">
+                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 04</p>
+                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/0Fz4TnqRnpPK2wtMfgt3Jt?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+            <div class="elegant-panel p-4 rounded-xl">
+                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 05</p>
+                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/6oqguLZVMIYaIT7PymSyuK?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+            <div class="elegant-panel p-4 rounded-xl">
+                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 06</p>
+                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/00v1tLZnH6a63XsHBTZuuh?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+            <div class="elegant-panel p-4 rounded-xl">
+                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 07</p>
+                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/2kO5lMYaFwUooXRepSuf2M?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+            <div class="elegant-panel p-4 rounded-xl">
+                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 08</p>
+                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/6k2QjAkZSStMwQKO6FsHtz?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+            <div class="elegant-panel p-4 rounded-xl">
+                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 09</p>
+                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/1ySwLF5OxLwPYw1Y4aszX6?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+            <div class="elegant-panel p-4 rounded-xl">
+                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 10</p>
+                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/5zcsfJabiMrNwroXzobn3l?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+            <div class="elegant-panel p-4 rounded-xl">
+                <p class="font-ux text-[10px] tracking-[0.2em] text-lawRed uppercase mb-3 font-semibold">Single 11</p>
+                <div class="spotify-container"><iframe loading="lazy" style="border-radius:12px" src="https://open.spotify.com/embed/track/1ibNKlq412eZCO3b8u3Pjv?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12 flex flex-col sm:flex-row justify-center gap-4 px-4">
+            <button id="toggle-tracks-btn" onclick="toggleTracks()" class="btn-outline w-full sm:w-auto">
+                Catálogo Completo (+8)
+            </button>
+            <a href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" class="btn-outline border-white/20 hover:border-lawRed w-full sm:w-auto">
+                Abrir Spotify <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- SHOWS SECTION -->
+    <section id="shows" class="py-24 px-6 max-w-5xl mx-auto relative z-10 reveal border-t border-white/5">
+        <div class="text-center mb-16 px-4">
+            <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Shows en Vivo</h2>
+            <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
+            <p class="font-ux text-xs tracking-[0.3em] uppercase text-gray-500 font-light mt-4">Fechas Confirmadas</p>
+        </div>
+
+        <div class="elegant-panel rounded-xl overflow-hidden divide-y divide-white/5">
+            <div class="show-row flex flex-col md:flex-row justify-between items-center p-6 gap-6">
+                <div class="flex flex-col md:flex-row gap-4 md:gap-10 w-full md:w-auto text-center md:text-left items-center">
+                    <div class="font-elegant text-4xl md:text-3xl text-lawRed font-bold min-w-[120px]">07 DIC</div>
+                    <div>
+                        <h4 class="font-ux font-bold text-lg md:text-xl uppercase tracking-wider">Cuenca, Ecuador</h4>
+                        <p class="font-ux text-xs text-gray-400 mt-1">Club Nocturno / Show en Vivo</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20reservar%20entradas%20para%20el%20show%20del%207%20de%20diciembre%20en%20Cuenca" target="_blank" class="btn-outline w-full md:w-auto text-center">Reservar Access</a>
+            </div>
+            
+            <div class="show-row flex flex-col md:flex-row justify-between items-center p-6 gap-6">
+                <div class="flex flex-col md:flex-row gap-4 md:gap-10 w-full md:w-auto text-center md:text-left items-center">
+                    <div class="font-elegant text-4xl md:text-3xl text-gray-400 font-bold min-w-[120px]">11 NOV</div>
+                    <div>
+                        <h4 class="font-ux font-bold text-lg md:text-xl uppercase tracking-wider text-gray-300">Guayaquil, Ecuador</h4>
+                        <p class="font-ux text-xs text-gray-500 mt-1">Lugar por anunciar</p>
+                    </div>
+                </div>
+                <span class="btn-outline border-white/20 text-gray-400 w-full md:w-auto text-center select-none">Por Anunciar</span>
+            </div>
+            
+            <div class="show-row flex flex-col md:flex-row justify-between items-center p-6 gap-6">
+                <div class="flex flex-col md:flex-row gap-4 md:gap-10 w-full md:w-auto text-center md:text-left items-center">
+                    <div class="font-elegant text-4xl md:text-3xl text-gray-400 font-bold min-w-[120px]">ENE</div>
+                    <div>
+                        <h4 class="font-ux font-bold text-lg md:text-xl uppercase tracking-wider text-gray-300">Quito, Ecuador</h4>
+                        <p class="font-ux text-xs text-gray-500 mt-1">Lugar por anunciar</p>
+                    </div>
+                </div>
+                <span class="btn-outline border-white/20 text-gray-400 w-full md:w-auto text-center select-none">Próximamente</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEOS SECTION -->
+    <section id="videos" class="py-24 px-6 bg-black/60 border-y border-white/5 relative z-10 backdrop-blur-sm reveal">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 text-center px-4">
+                <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Registro Visual</h2>
+                <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
+                <p class="font-ux text-xs tracking-[0.3em] uppercase text-gray-500 font-light mt-4">Videografía Oficial</p>
+            </div>
+
+            <div class="flex flex-col gap-6">
+                <div class="elegant-panel aspect-video rounded-xl overflow-hidden p-1 lg:w-4/5 mx-auto w-full">
+                    <iframe loading="lazy" class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/Plt1SrU21qQ" title="Video Principal BASA.R3X" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/bEUdUMIZ2J4" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/eb-YBCDLS5k" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/OdnRu6pU23U" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/lnMgugY8yvI" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="elegant-panel aspect-video rounded-lg overflow-hidden p-1"><iframe loading="lazy" class="w-full h-full rounded" src="https://www.youtube.com/embed/3w3-PVope9c" frameborder="0" allowfullscreen></iframe></div>
+                    
+                    <div class="elegant-panel rounded-lg p-6 flex flex-col justify-center items-center text-center">
+                        <i class="fa-brands fa-youtube text-4xl md:text-5xl text-lawRed mb-3"></i>
+                        <p class="font-elegant text-lg md:text-xl uppercase tracking-wider mb-2">Canal Oficial</p>
+                        <a href="https://youtube.com/@basa.r3x" target="_blank" class="btn-outline text-xs mt-2 w-full sm:w-auto">Suscribirse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto relative z-10 reveal">
+        <div class="mb-16 text-center px-4">
+            <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Galería</h2>
+            <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
+            <p class="font-ux text-xs tracking-[0.3em] uppercase text-gray-500 font-light mt-4">Archivo Fotográfico</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
+                <img loading="lazy" src="https://i.pinimg.com/736x/f5/7c/f5/f57cf513675e19aea23d71738b2bb048.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
+            </div>
+            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
+                <img loading="lazy" src="https://i.pinimg.com/736x/fe/d7/cc/fed7cc6e245357f4487d65c956dfe1ff.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
+            </div>
+            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
+                <img loading="lazy" src="https://i.pinimg.com/736x/6a/85/f8/6a85f8fa6be9f3b767295d0078ed2e61.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
+            </div>
+            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
+                <img loading="lazy" src="https://i.pinimg.com/736x/5a/eb/e5/5aebe52ce1aaa1b5aa7f70db04f4ec39.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
+            </div>
+            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
+                <img loading="lazy" src="https://i.pinimg.com/736x/97/8e/17/978e17b41f9af5c48eb3f0c6f863ac83.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
+            </div>
+            <div class="elegant-panel p-1 rounded-xl overflow-hidden aspect-square group bg-black/60">
+                <img loading="lazy" src="https://i.pinimg.com/736x/54/d9/31/54d931b90bf5a4ed0708785016ccfcbd.jpg" alt="BASA.R3X Galería" class="w-full h-full object-cover rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 px-6 max-w-5xl mx-auto relative z-10 reveal">
+        <div class="mb-16 text-center px-4">
+            <h2 class="font-elegant text-section-title uppercase tracking-[0.2em] mb-4">Booking & Contacto</h2>
+            <div class="heart-divider justify-center"><i class="fa-solid fa-heart text-lawRed text-xs"></i></div>
+            <p class="font-ux text-xs md:text-sm text-gray-400 mt-6 max-w-xl mx-auto font-light leading-relaxed">
+                Para shows en vivo, contrataciones, producciones y colaboraciones.
+            </p>
+        </div>
+
+        <div class="elegant-panel p-6 md:p-12 rounded-2xl relative overflow-hidden bg-black/60 backdrop-blur-md">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-lawRed opacity-10 blur-[100px] pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row gap-10 md:gap-12 relative z-10">
+                
+                <div class="w-full md:w-1/3 flex flex-col justify-center gap-6 border-b md:border-b-0 md:border-r border-white/10 pb-8 md:pb-0 md:pr-8">
+                    <div>
+                        <h4 class="font-ux text-[10px] tracking-[0.2em] uppercase text-lawRed font-bold mb-1">Management & Correo</h4>
+                        <a href="mailto:basa11business@outlook.com" class="font-elegant text-sm md:text-base hover:text-lawRed transition-colors break-all md:break-normal">basa11business@outlook.com</a>
+                    </div>
+                    <div>
+                        <h4 class="font-ux text-[10px] tracking-[0.2em] uppercase text-lawRed font-bold mb-1">WhatsApp Directo</h4>
+                        <a href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20cotizar%20un%20show" target="_blank" class="font-elegant text-sm md:text-base hover:text-lawRed transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-green-500"></i> +593 99 198 0908
+                        </a>
+                    </div>
+                    <div>
+                        <h4 class="font-ux text-[10px] tracking-[0.2em] uppercase text-lawRed font-bold mb-1">Base Operativa</h4>
+                        <p class="font-elegant text-sm md:text-base text-gray-300">Cuenca, Ecuador</p>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/10">
+                        <h4 class="font-ux text-[10px] tracking-[0.2em] uppercase text-lawRed font-bold mb-3">Comunidad</h4>
+                        <div class="flex flex-wrap gap-2 md:gap-3">
+                            <a href="https://chat.whatsapp.com/HGtAcvyshG42Mky1e3L6tx" target="_blank" class="p-2 px-3 bg-white/5 hover:bg-lawRed/20 rounded-md text-xs font-semibold flex items-center gap-2 transition-all flex-grow justify-center sm:flex-grow-0">
+                                <i class="fa-brands fa-whatsapp text-green-400"></i> VIP
+                            </a>
+                            <a href="https://t.me/+jtmWNN4HTn04ODk5" target="_blank" class="p-2 px-3 bg-white/5 hover:bg-lawRed/20 rounded-md text-xs font-semibold flex items-center gap-2 transition-all flex-grow justify-center sm:flex-grow-0">
+                                <i class="fa-brands fa-telegram text-sky-400"></i> TG
+                            </a>
+                            <a href="https://kick.com/basar3x" target="_blank" class="p-2 px-3 bg-white/5 hover:bg-lawRed/20 rounded-md text-xs font-semibold flex items-center gap-2 transition-all flex-grow justify-center sm:flex-grow-0">
+                                <i class="fa-solid fa-gamepad text-green-400"></i> Kick
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-2/3">
+                    <form action="mailto:basa11business@outlook.com" method="post" enctype="text/plain" class="flex flex-col gap-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <input type="text" name="Nombre" placeholder="Nombre o Promotora" class="input-elegant text-sm md:text-base" required>
+                            <input type="email" name="Correo" placeholder="Correo Electrónico" class="input-elegant text-sm md:text-base" required>
+                        </div>
+                        <input type="text" name="Asunto" placeholder="Asunto (Booking / Colab)" class="input-elegant text-sm md:text-base" required>
+                        <textarea name="Mensaje" placeholder="Detalles de la propuesta..." rows="4" class="input-elegant text-sm md:text-base resize-none mt-2" required></textarea>
+                        
+                        <div class="mt-4 text-center md:text-right">
+                            <button type="submit" class="btn-elegant text-[10px] py-3 px-8 w-full md:w-auto">Enviar Propuesta</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-24 border-t border-white/5 text-center bg-lawDark/95 backdrop-blur-md relative z-10 overflow-hidden reveal">
+        <!-- Texto Gigante adaptativo -->
+        <h1 class="font-elegant text-hero-title text-white opacity-5 mb-4 pointer-events-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 whitespace-nowrap">BASA.R3X</h1>
+        
+        <div class="relative z-10 flex flex-col items-center px-4">
+            <i class="fa-solid fa-arrow-up text-lawRed text-2xl md:text-3xl mb-6 opacity-80 hover:opacity-100 hover:scale-125 transition-all cursor-pointer p-4" onclick="window.scrollTo(0,0)" title="Volver arriba"></i>
+            <h2 class="font-elegant text-3xl md:text-4xl tracking-[0.3em] text-white/90 mb-3">BASA.R3X</h2>
+            <p class="font-ux text-xs md:text-sm uppercase tracking-[0.4em] text-lawRed mb-8">Tu Professor</p>
+            
+            <div class="flex gap-6 mb-10 text-gray-400 text-xl md:text-2xl">
+                <a href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" class="hover:text-lawRed transition-colors"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://youtube.com/@basa.r3x" target="_blank" class="hover:text-lawRed transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.instagram.com/diego.r3x" target="_blank" class="hover:text-lawRed transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@basa.r3x" target="_blank" class="hover:text-lawRed transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+
+            <p class="font-ux text-[10px] md:text-xs uppercase tracking-[0.2em] text-gray-600">
+                © 2026 BASA.R3X. Heart Concept Edition. Cuenca, Ecuador.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS MÁSTER -->
+    <script>
+        // Lógica Menú Móvil
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMobileMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileLinks.forEach(link => { link.addEventListener('click', toggleMobileMenu); });
+
+        // Toggle Singles
+        function toggleTracks() {
+            const moreTracks = document.getElementById('more-tracks');
+            const btn = document.getElementById('toggle-tracks-btn');
+            if (moreTracks.classList.contains('hidden')) {
+                moreTracks.classList.remove('hidden');
+                btn.innerText = 'Mostrar Menos';
+            } else {
+                moreTracks.classList.add('hidden');
+                btn.innerText = 'Catálogo Completo (+8)';
+            }
+        }
+
+        function startApp() {
+            // Partículas
+            const container = document.getElementById('particles-container');
+            if (container && container.children.length === 0) {
+                // Reducimos cantidad en móviles para mejor rendimiento
+                const isMobile = window.innerWidth < 768;
+                const particleCount = isMobile ? 25 : 45; 
+                for (let i = 0; i < particleCount; i++) {
+                    let particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    let size = Math.random() * 3 + 1; 
+                    let posX = Math.random() * 100; 
+                    let delay = Math.random() * 8; 
+                    let duration = Math.random() * 15 + 10; 
+                    let isRed = Math.random() > 0.6; 
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}vw`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.animationDuration = `${duration}s`;
+                    if (isRed) {
+                        particle.style.backgroundColor = '#990000';
+                        particle.style.boxShadow = '0 0 8px #990000';
+                    } else {
+                        particle.style.backgroundColor = '#444444'; 
+                    }
+                    container.appendChild(particle);
+                }
+            }
+
+            // Scroll Reveal con IntersectionObserver (Más eficiente que onscroll)
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            
+            const revealObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startApp);
+        } else {
+            startApp();
+        }
+    </script>
+</body>
+</html>
