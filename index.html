@@ -124,10 +124,24 @@
     .grid-overlay{position:fixed;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px);background-size:44px 44px}
     .grain{position:fixed;inset:0;z-index:7;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
 
-    /* ---------- LOADER ---------- */
-    #loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#0a0f1a;clip-path:circle(150% at 50% 50%);will-change:clip-path}
-    .loader-inner{width:min(500px,82vw);text-align:center}.loader-ecg{width:100%;overflow:visible}.loader-ecg path{fill:none;stroke:var(--cyan);stroke-width:2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 8px var(--cyan));stroke-dasharray:1;stroke-dashoffset:1}
-    .boot-copy{display:flex;justify-content:space-between;margin-top:1.2rem;font-family:var(--font-title);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}.boot-status{color:var(--cyan)}
+    /* ---------- LOADER BLINDADO ---------- */
+    #loader{
+      position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+      background:#0a0f1a;clip-path:circle(150% at 50% 50%);
+      transition:clip-path .8s cubic-bezier(.76,0,.24,1), opacity .5s ease;
+      will-change:clip-path,opacity;
+    }
+    #loader.is-done{clip-path:circle(0% at 50% 50%);opacity:0;pointer-events:none}
+    .loader-inner{width:min(500px,82vw);text-align:center}
+    .loader-ecg{width:100%;overflow:visible}
+    .loader-ecg path{
+      fill:none;stroke:var(--cyan);stroke-width:2;vector-effect:non-scaling-stroke;
+      filter:drop-shadow(0 0 8px var(--cyan));
+      stroke-dasharray:1;stroke-dashoffset:1;
+      transition:stroke-dashoffset .1s linear;
+    }
+    .boot-copy{display:flex;justify-content:space-between;margin-top:1.2rem;font-family:var(--font-title);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+    .boot-status{color:var(--cyan)}
 
     /* ---------- NAV + SCROLL PROGRESS ---------- */
     .nav{position:fixed;top:0;left:0;right:0;z-index:90;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;padding:.85rem var(--pad);background:linear-gradient(180deg,rgba(10,15,26,.95),rgba(10,15,26,.75));border-bottom:1px solid var(--line);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:transform .4s var(--ease),opacity .35s ease}
@@ -407,7 +421,6 @@
       flex-wrap:wrap;
       justify-content:center;
     }
-    /* Indicador de Scroll para guiar al usuario */
     .hero-scroll-cue{
       display:inline-flex;
       flex-direction:column;
@@ -618,7 +631,6 @@
     .video-card:hover .video-play-pill svg{fill:#000}
     .video-more{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
 
-    /* Modal de Video Cinematográfico */
     .video-modal{
       position:fixed;inset:0;z-index:210;
       background:rgba(6,10,18,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
@@ -805,27 +817,18 @@
     /* ---------- MÓVIL (<= 680px) ---------- */
     @media(max-width:680px){
       :root{--section:clamp(2.6rem,6.5vw,3.9rem)}
-      .hero{
-        min-height:auto;
-        padding:3.8rem 0 2rem;
-      }
+      .hero{min-height:auto;padding:3.8rem 0 2rem}
       .hero-back-layer{top:12%}
-      .hero-back-text{
-        font-size:clamp(1.85rem,10.4vw,4rem);
-        -webkit-text-stroke:1.2px rgba(0,229,255,0.34);
-      }
+      .hero-back-text{font-size:clamp(1.85rem,10.4vw,4rem);-webkit-text-stroke:1.2px rgba(0,229,255,0.34)}
       .hero-stage{width:100%;max-width:100%}
       .hero-ambient::before{
         background-image:url("https://i.pinimg.com/736x/6b/e8/3f/6be83f5a865c784d985cd173904a7e0f.jpg");
         background-position:center 20%;
       }
       .hero-portrait-wrap{
-        width:100vw;
-        max-width:100vw;
-        aspect-ratio:auto;
+        width:100vw;max-width:100vw;aspect-ratio:auto;
         margin-inline:calc(50% - 50vw);
-        height:clamp(390px,62svh,500px);
-        max-height:none;
+        height:clamp(390px,62svh,500px);max-height:none;
         -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 10%, #000 72%, transparent 100%);
         mask-image:linear-gradient(to bottom, transparent 0%, #000 10%, #000 72%, transparent 100%);
       }
@@ -836,25 +839,15 @@
           linear-gradient(180deg, rgba(10,15,26,0.68) 0%, transparent 16%, transparent 66%, rgba(10,15,26,0.94) 92%, #0a0f1a 100%);
       }
       .hero-portrait{
-        object-fit:cover;
-        object-position:center 15%;
-        transform:scale(1.08);
-        transform-origin:center 24%;
+        object-fit:cover;object-position:center 15%;
+        transform:scale(1.08);transform-origin:center 24%;
       }
       .room-scanner::before{width:86vw}
       .room-scanner::after{width:70vw}
       .room-scan-beam{left:0;right:0}
-      .hero-front-layer{
-        margin-top:-3.25rem;
-        padding-inline:var(--pad);
-      }
+      .hero-front-layer{margin-top:-3.25rem;padding-inline:var(--pad)}
       .hero-front-title{font-size:clamp(2.5rem,12.5vw,4.2rem)}
-      .hero-desc{
-        margin-top:.42rem;
-        font-size:clamp(.95rem,4.2vw,1.15rem);
-        letter-spacing:.36em;
-        text-indent:.36em;
-      }
+      .hero-desc{margin-top:.42rem;font-size:clamp(.95rem,4.2vw,1.15rem);letter-spacing:.36em;text-indent:.36em}
       .hero-actions{margin-top:.85rem;gap:.7rem}
       .hero-scroll-cue{display:none}
 
@@ -952,12 +945,55 @@
 <body>
   <a class="skip-link" href="#top">Saltar al contenido</a>
 
+  <!-- LOADER INDEPENDIENTE CON FAIL-SAFE -->
   <div id="loader" aria-live="polite" aria-label="Iniciando sistema">
     <div class="loader-inner">
-      <svg class="loader-ecg" viewBox="0 0 600 90" aria-hidden="true"><path pathLength="1" d="M0 46H100L118 46L134 10L156 79L178 46H260L277 46L291 22L310 68L330 46H420L437 46L452 7L475 82L496 46H600"/></svg>
+      <svg class="loader-ecg" viewBox="0 0 600 90" aria-hidden="true"><path id="loaderPath" pathLength="1" d="M0 46H100L118 46L134 10L156 79L178 46H260L277 46L291 22L310 68L330 46H420L437 46L452 7L475 82L496 46H600"/></svg>
       <div class="boot-copy"><span id="bootText">Iniciando Room</span><span class="boot-status">SCAN <span id="bootPercent">0</span>%</span></div>
     </div>
   </div>
+  <script>
+    // Script de arranque inmediato (no depende de librerías externas ni puede bloquearse)
+    (function(){
+      var loader = document.getElementById("loader");
+      var path = document.getElementById("loaderPath");
+      var percent = document.getElementById("bootPercent");
+      var text = document.getElementById("bootText");
+      if(!loader) return;
+
+      var phrase = "ROOM: ESTABLE";
+      var start = performance.now();
+      var duration = 1150;
+      var closed = false;
+
+      function closeLoader(){
+        if(closed) return;
+        closed = true;
+        loader.classList.add("is-done");
+        setTimeout(function(){ if(loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 850);
+      }
+
+      function tick(now){
+        if(closed) return;
+        var p = Math.min(1, (now - start) / duration);
+        var eased = 1 - Math.pow(1 - p, 3);
+        if(percent) percent.textContent = String(Math.round(eased * 100));
+        if(path) path.style.strokeDashoffset = String(1 - eased);
+        if(text){
+          var chars = Math.max(1, Math.floor(eased * phrase.length));
+          text.textContent = phrase.slice(0, chars);
+        }
+        if(p < 1){
+          requestAnimationFrame(tick);
+        } else {
+          setTimeout(closeLoader, 120);
+        }
+      }
+      requestAnimationFrame(tick);
+      // Seguro absoluto: si cualquier cosa falla, abre la web en 1.8s
+      setTimeout(closeLoader, 1800);
+    })();
+  </script>
 
   <canvas id="webgl" aria-hidden="true"></canvas>
   <div class="static-atmosphere" aria-hidden="true"></div>
@@ -1014,7 +1050,7 @@
   </div>
 
   <main id="top">
-    <!-- HERO SECTION (CRO Optimizado hacia Escucha Directa) -->
+    <!-- HERO SECTION -->
     <section class="hero">
       <div class="hero-ambient" aria-hidden="true"></div>
 
@@ -1047,14 +1083,14 @@
             <a class="button magnetic" href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20cotizar%20un%20show%20/%20colaboraci%C3%B3n" target="_blank" rel="noopener">BOOKING DIRECTO</a>
           </div>
           <a class="hero-scroll-cue" href="#music" aria-label="Deslizar hacia discografía">
-            <span> Escanear frecuencias </span>
+            <span>Escanear frecuencias</span>
             <span class="hero-scroll-line" aria-hidden="true"></span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- MUSIC / DISCOGRAFÍA (Subido en jerarquía para conversión inmediata) -->
+    <!-- MUSIC / DISCOGRAFÍA -->
     <section class="section catalog rule" id="music">
       <div class="shell">
         <div class="section-head single">
@@ -1155,7 +1191,7 @@
       </div>
     </section>
 
-    <!-- VISUALS (Con Reproductor Modal In-Page) -->
+    <!-- VISUALS -->
     <section class="section visuals rule" id="visuals">
       <div class="shell video-head">
         <div>
@@ -1191,7 +1227,7 @@
       </div>
     </section>
 
-    <!-- SHOWS (Orden Cronológico Corregido) -->
+    <!-- SHOWS -->
     <section class="section rule" id="shows">
       <div class="shell shows-layout">
         <div class="shows-sticky">
@@ -1218,7 +1254,7 @@
       </div>
     </section>
 
-    <!-- MERCH (Con Filtro Limpio por Categorías) -->
+    <!-- MERCH -->
     <section class="section merch rule" id="merch">
       <div class="shell">
         <div class="merch-head-flex">
@@ -1407,10 +1443,10 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite">Añadido al carrito</div>
 
-  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
     (() => {
       "use strict";
@@ -1457,7 +1493,7 @@
         {
           id:"vip",
           category:"oficial",
-          badge:" Tickets",
+          badge:"Tickets",
           name:"Entrada VIP Tripulación Corazón",
           price:25,
           sizes:["General","VIP"],
@@ -1524,14 +1560,13 @@
       }
 
       function syncBodyLock(){
-        const locked = $("#mobileMenu").classList.contains("open") ||
-                       $("#cart").classList.contains("open") ||
-                       $("#lightbox").classList.contains("open") ||
-                       $("#videoModal").classList.contains("open");
+        const locked = $("#mobileMenu")?.classList.contains("open") ||
+                       $("#cart")?.classList.contains("open") ||
+                       $("#lightbox")?.classList.contains("open") ||
+                       $("#videoModal")?.classList.contains("open");
         locked ? lenis?.stop() : lenis?.start();
       }
 
-      /* Cartel Wanted con 3D Tilt a 60fps + Bounty Counter */
       function initWantedPoster(){
         const poster = $("#wantedPoster");
         const bountyEl = $("#bountyCounter");
@@ -1566,15 +1601,9 @@
           });
         }
 
-        poster.addEventListener("click", e => {
-          e.preventDefault();
-          triggerWantedAnimation();
-        });
+        poster.addEventListener("click", e => { e.preventDefault(); triggerWantedAnimation(); });
         poster.addEventListener("keydown", e => {
-          if(e.key === "Enter" || e.key === " "){
-            e.preventDefault();
-            triggerWantedAnimation();
-          }
+          if(e.key === "Enter" || e.key === " "){ e.preventDefault(); triggerWantedAnimation(); }
         });
 
         if(bountyEl && "IntersectionObserver" in window && !reduced){
@@ -1597,69 +1626,49 @@
         }
       }
 
-      /* Spotify optimizado (Sin doble renderizado y con carga bajo demanda) */
       function initSpotifyEmbeds(){
         const embeds = $$("[data-spotify-id]");
         const musicSection = $("#music");
         if(!embeds.length || !musicSection) return;
 
-        let loaded = false;
-        const loadSpotify = () => {
-          if(loaded) return;
-          loaded = true;
-          const embedHeight = innerWidth <= 680 ? 80 : 152;
+        const embedHeight = innerWidth <= 680 ? 80 : 152;
+        embeds.forEach(el => {
+          const id = el.dataset.spotifyId;
+          el.innerHTML = `<iframe title="Spotify Track ${id}" src="https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0" width="100%" height="${embedHeight}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border:0"></iframe>`;
+        });
 
-          window.onSpotifyIframeApiReady = (IFrameAPI) => {
-            const controllers = [];
-            embeds.forEach(el => {
-              const card = el.closest(".release-card");
-              const mount = document.createElement("div");
-              el.replaceChildren(mount);
-              IFrameAPI.createController(mount, {
-                uri: el.dataset.spotifyUri,
-                width: "100%",
-                height: embedHeight
-              }, controller => {
-                controllers.push({ controller, card });
-                controller.addListener("playback_update", e => {
-                  const playing = e.data && !e.data.isPaused && !e.data.isBuffering;
-                  if(card) card.classList.toggle("is-playing", Boolean(playing));
-                  if(playing){
-                    controllers.forEach(item => {
-                      if(item.controller !== controller){
-                        item.controller.pause();
-                        item.card?.classList.remove("is-playing");
-                      }
-                    });
-                  }
-                });
+        window.onSpotifyIframeApiReady = (IFrameAPI) => {
+          const controllers = [];
+          embeds.forEach(el => {
+            const card = el.closest(".release-card");
+            const mount = document.createElement("div");
+            el.replaceChildren(mount);
+            IFrameAPI.createController(mount, {
+              uri: el.dataset.spotifyUri,
+              width: "100%",
+              height: embedHeight
+            }, controller => {
+              controllers.push({ controller, card });
+              controller.addListener("playback_update", e => {
+                const playing = e.data && !e.data.isPaused && !e.data.isBuffering;
+                if(card) card.classList.toggle("is-playing", Boolean(playing));
+                if(playing){
+                  controllers.forEach(item => {
+                    if(item.controller !== controller){
+                      item.controller.pause();
+                      item.card?.classList.remove("is-playing");
+                    }
+                  });
+                }
               });
             });
-          };
-
-          const script = document.createElement("script");
-          script.src = "https://open.spotify.com/embed/iframe-api/v1";
-          script.async = true;
-          script.onerror = () => {
-            embeds.forEach(el => {
-              const id = el.dataset.spotifyId;
-              el.innerHTML = `<iframe title="Spotify Track ${id}" src="https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0" width="100%" height="${embedHeight}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border:0"></iframe>`;
-            });
-          };
-          document.body.appendChild(script);
+          });
         };
 
-        if("IntersectionObserver" in window){
-          const io = new IntersectionObserver(entries => {
-            if(entries[0].isIntersecting){
-              loadSpotify();
-              io.disconnect();
-            }
-          }, { rootMargin: "350px 0px" });
-          io.observe(musicSection);
-        } else {
-          loadSpotify();
-        }
+        const script = document.createElement("script");
+        script.src = "https://open.spotify.com/embed/iframe-api/v1";
+        script.async = true;
+        document.body.appendChild(script);
       }
 
       function renderMerch(){
@@ -1921,20 +1930,22 @@
       class SmokeScene {
         constructor(canvas){
           this.canvas = canvas; this.raf = 0; this.velocity = 0; this.running = false;
-          if(reduced || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) || !window.THREE){ this.destroy(); return; }
-          this.scene = new THREE.Scene(); this.camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
-          this.renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:false,powerPreference:"low-power"});
-          this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
-          this.material = new THREE.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{uTime:{value:0},uVelocity:{value:0},uResolution:{value:new THREE.Vector2(innerWidth,innerHeight)}},vertexShader:`void main(){gl_Position=vec4(position,1.0);}`,fragmentShader:`precision mediump float;uniform float uTime;uniform float uVelocity;uniform vec2 uResolution;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*noise(p);p=p*2.03+11.7;a*=.5;}return v;}void main(){vec2 uv=gl_FragCoord.xy/uResolution.xy;vec2 p=(uv-.5)*vec2(uResolution.x/uResolution.y,1.)*2.2;float speed=clamp(abs(uVelocity)*.012,0.,1.5);p.y-=uTime*(.035+speed*.06);p.x+=sin(p.y*1.8+uTime*.12)*.13;float n=fbm(p+fbm(p*1.7+uTime*.03));float smoke=smoothstep(.43,.82,n)*(.32+speed*.14);vec3 cyan=vec3(.0,.8,1.0);float vignette=1.-smoothstep(.25,1.,length(uv-.5));gl_FragColor=vec4(cyan,smoke*vignette);}`});
-          this.mesh = new THREE.Mesh(new THREE.PlaneGeometry(2,2),this.material); this.scene.add(this.mesh);
-          this.resize = () => { this.renderer.setSize(innerWidth,innerHeight,false); this.material.uniforms.uResolution.value.set(innerWidth,innerHeight); };
-          addEventListener("resize",this.resize,{passive:true}); this.resize(); this.start();
+          if(!canvas || reduced || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) || !window.THREE){ this.destroy(); return; }
+          try{
+            this.scene = new THREE.Scene(); this.camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+            this.renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:false,powerPreference:"low-power"});
+            this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
+            this.material = new THREE.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{uTime:{value:0},uVelocity:{value:0},uResolution:{value:new THREE.Vector2(innerWidth,innerHeight)}},vertexShader:`void main(){gl_Position=vec4(position,1.0);}`,fragmentShader:`precision mediump float;uniform float uTime;uniform float uVelocity;uniform vec2 uResolution;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*noise(p);p=p*2.03+11.7;a*=.5;}return v;}void main(){vec2 uv=gl_FragCoord.xy/uResolution.xy;vec2 p=(uv-.5)*vec2(uResolution.x/uResolution.y,1.)*2.2;float speed=clamp(abs(uVelocity)*.012,0.,1.5);p.y-=uTime*(.035+speed*.06);p.x+=sin(p.y*1.8+uTime*.12)*.13;float n=fbm(p+fbm(p*1.7+uTime*.03));float smoke=smoothstep(.43,.82,n)*(.32+speed*.14);vec3 cyan=vec3(.0,.8,1.0);float vignette=1.-smoothstep(.25,1.,length(uv-.5));gl_FragColor=vec4(cyan,smoke*vignette);}`});
+            this.mesh = new THREE.Mesh(new THREE.PlaneGeometry(2,2),this.material); this.scene.add(this.mesh);
+            this.resize = () => { this.renderer.setSize(innerWidth,innerHeight,false); this.material.uniforms.uResolution.value.set(innerWidth,innerHeight); };
+            addEventListener("resize",this.resize,{passive:true}); this.resize(); this.start();
+          }catch(e){ this.destroy(); }
         }
         setVelocity(value){ this.velocity = value || 0; }
         frame = time => { if(!this.running) return; this.material.uniforms.uTime.value = time * .001; this.material.uniforms.uVelocity.value += (this.velocity - this.material.uniforms.uVelocity.value) * .08; this.renderer.render(this.scene,this.camera); this.raf = requestAnimationFrame(this.frame); };
         start(){ if(!this.renderer || this.running || !pageVisible) return; this.running = true; this.raf = requestAnimationFrame(this.frame); }
         stop(){ this.running = false; cancelAnimationFrame(this.raf); }
-        destroy(){ this.stop(); if(this.mesh){ this.mesh.geometry.dispose(); this.material.dispose(); this.renderer.dispose(); } this.canvas.style.display = "none"; removeEventListener("resize",this.resize); }
+        destroy(){ this.stop(); if(this.mesh){ this.mesh.geometry.dispose(); this.material.dispose(); this.renderer?.dispose(); } if(this.canvas) this.canvas.style.display = "none"; if(this.resize) removeEventListener("resize",this.resize); }
       }
 
       function initScroll(){
@@ -2280,7 +2291,6 @@
           if(innerWidth > 900 && $("#mobileMenu").classList.contains("open")) closeMenu();
         }, { passive: true });
 
-        /* Video Rail + Modal In-Page */
         const videoRail = $("#videoRail");
         const videoCards = $$(".video-card", videoRail);
         const videoDots = $$("#videoDots .slider-dot");
@@ -2306,15 +2316,15 @@
           syncBodyLock();
         };
 
-        \$("#videoModalClose").addEventListener("click", closeVideoModal);
+        $("#videoModalClose").addEventListener("click", closeVideoModal);
         videoModal.addEventListener("click", e => { if(e.target === videoModal) closeVideoModal(); });
 
         const moveVideo = direction => {
-          const card = \$(".video-card", videoRail);
+          const card = $(".video-card", videoRail);
           if(card) videoRail.scrollBy({ left: direction * (card.getBoundingClientRect().width + 20), behavior: reduced ? "auto" : "smooth" });
         };
-        \$("#videoPrev").addEventListener("click", () => moveVideo(-1));
-        \$("#videoNext").addEventListener("click", () => moveVideo(1));
+        $("#videoPrev").addEventListener("click", () => moveVideo(-1));
+        $("#videoNext").addEventListener("click", () => moveVideo(1));
 
         videoRail.addEventListener("scroll", () => {
           let activeIdx = 0, minDist = Infinity;
@@ -2366,8 +2376,7 @@
           }
         });
 
-        /* Formulario Dual: Correo o WhatsApp Directo */
-        const contactForm = \$("#contactForm");
+        const contactForm = $("#contactForm");
         contactForm.addEventListener("submit", event => {
           event.preventDefault();
           const data = new FormData(contactForm);
@@ -2376,25 +2385,11 @@
           location.href = `mailto:basa11business@outlook.com?subject=${subject}&body=${body}`;
         });
 
-        \$("#sendWhatsAppBooking").addEventListener("click", () => {
+        $("#sendWhatsAppBooking").addEventListener("click", () => {
           if(!contactForm.reportValidity()) return;
           const data = new FormData(contactForm);
           const text = `Hola BASA.R3X, propuesta de Booking:\n\n*Nombre/Agencia:* ${data.get("Nombre")}\n*Correo:* ${data.get("Correo")}\n*Asunto:* ${data.get("Asunto")}\n*Detalles:* ${data.get("Mensaje")}`;
           window.open(`https://wa.me/593991980908?text=${encodeURIComponent(text)}`, "_blank", "noopener");
-        });
-      }
-
-      function runLoader(){
-        const loader = $("#loader"), path = $(".loader-ecg path"), percent = $("#bootPercent"), text = $("#bootText");
-        const phrase = "ROOM: ESTABLE"; let chars = 0;
-        if(reduced || !window.gsap){ text.textContent = phrase; percent.textContent = "100"; loader.remove(); return Promise.resolve(); }
-        return new Promise(resolve => {
-          const typer = setInterval(() => { text.textContent = phrase.slice(0, ++chars); if(chars >= phrase.length) clearInterval(typer); }, 55);
-          const state = { value: 0 };
-          const tl = gsap.timeline({ onComplete: () => { loader.remove(); resolve(); } });
-          tl.to(path, { strokeDashoffset: 0, duration: 1.15, ease: "power2.inOut" }, 0)
-            .to(state, { value: 100, duration: 1.15, ease: "power1.inOut", onUpdate: () => percent.textContent = Math.round(state.value) }, 0)
-            .to(loader, { clipPath: "circle(0% at 50% 50%)", duration: 0.8, ease: "power4.inOut" }, 1.2);
         });
       }
 
@@ -2404,20 +2399,25 @@
         else { smoke?.stop(); if(window.gsap) gsap.globalTimeline.pause(); }
       });
 
-      window.addEventListener("DOMContentLoaded", async () => {
-        initGalleryAndLightbox();
-        renderMerch();
-        initWantedPoster();
-        initSpotifyEmbeds();
-        initUI();
-        initCatalogControls();
-        new Cart();
-        smoke = new SmokeScene(\$("#webgl"));
-        initScroll();
-        initMagnetic();
-        await runLoader();
-        window.ScrollTrigger?.refresh();
-      });
+      const bootApp = () => {
+        try { initGalleryAndLightbox(); } catch(e){ console.error(e); }
+        try { renderMerch(); } catch(e){ console.error(e); }
+        try { initWantedPoster(); } catch(e){ console.error(e); }
+        try { initSpotifyEmbeds(); } catch(e){ console.error(e); }
+        try { initUI(); } catch(e){ console.error(e); }
+        try { initCatalogControls(); } catch(e){ console.error(e); }
+        try { new Cart(); } catch(e){ console.error(e); }
+        try { smoke = new SmokeScene($("#webgl")); } catch(e){ console.error(e); }
+        try { initScroll(); } catch(e){ console.error(e); }
+        try { initMagnetic(); } catch(e){ console.error(e); }
+        setTimeout(() => window.ScrollTrigger?.refresh(), 1300);
+      };
+
+      if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", bootApp);
+      } else {
+        bootApp();
+      }
     })();
   </script>
 </body>
