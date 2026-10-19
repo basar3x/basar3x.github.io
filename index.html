@@ -20,7 +20,7 @@
   <link rel="apple-touch-icon" href="https://i.pinimg.com/736x/6b/e8/3f/6be83f5a865c784d985cd173904a7e0f.jpg">
   <link rel="canonical" href="https://basar3x.com/">
 
-  <!-- SEO Estructurado para Artista Musical (Schema.org) -->
+  <!-- SEO Estructurado para Artista Musical -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,10 +30,7 @@
     "url": "https://basar3x.com/",
     "image": "https://i.pinimg.com/736x/6b/e8/3f/6be83f5a865c784d985cd173904a7e0f.jpg",
     "genre": ["Rock", "Urbano", "Latin Urban"],
-    "foundingLocation": {
-      "@type": "Place",
-      "name": "Cuenca, Ecuador"
-    },
+    "foundingLocation": { "@type": "Place", "name": "Cuenca, Ecuador" },
     "sameAs": [
       "https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE",
       "https://www.instagram.com/diego.r3x",
@@ -72,7 +69,6 @@
     a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{color:inherit;cursor:pointer;background:none;border:none}
     img{display:block;max-width:100%;user-select:none;-webkit-user-drag:none}figure{margin:0}
     :focus-visible{outline:2px solid var(--yellow);outline-offset:4px}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .skip-link{position:fixed;top:-100px;left:1rem;z-index:10000;padding:.7rem 1.15rem;border-radius:0 0 8px 8px;background:var(--cyan);color:#000;font-family:var(--font-title);font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;transition:top .22s ease}
     .skip-link:focus{top:0;outline:2px solid var(--yellow);outline-offset:2px}
     .shell{width:min(100% - (var(--pad) * 2),1380px);margin-inline:auto}
@@ -90,12 +86,12 @@
     .button{
       --bx:0px;--by:0px;
       display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
-      min-height:48px;padding:.8rem 1.65rem;
+      min-height:48px;padding:.8rem 1.8rem;
       border:1px solid var(--cyan);border-radius:var(--radius-sm);
       background:rgba(10,15,26,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
       color:var(--cyan);
       text-transform:uppercase;letter-spacing:.14em;
-      font-family:var(--font-title);font-size:.74rem;font-weight:700;
+      font-family:var(--font-title);font-size:.76rem;font-weight:700;
       transform:translate3d(var(--bx),var(--by),0);
       transition:border-color .28s ease,color .28s ease,box-shadow .28s ease,background-color .28s ease;
       position:relative;overflow:hidden;z-index:1;
@@ -116,7 +112,7 @@
     .icon-button:hover{border-color:var(--cyan);background:var(--cyan-dim);box-shadow:0 0 15px var(--cyan-dim)}
     .icon-button:active{transform:scale(.94)}
     .icon-button svg,.button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-    .button svg{width:14px;height:14px}
+    .button svg{width:15px;height:15px}
 
     /* ---------- ATMÓSFERA ---------- */
     #webgl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.52}
@@ -170,7 +166,7 @@
       position:relative;z-index:2;
       min-height:100svh;
       display:flex;flex-direction:column;justify-content:center;align-items:center;
-      padding:clamp(4.8rem,8vh,6.2rem) var(--pad) clamp(2.8rem,5vh,3.8rem);
+      padding:clamp(4.8rem,8vh,6.2rem) var(--pad) clamp(2.4rem,4.5vh,3.4rem);
       overflow:hidden;
       isolation:isolate;
     }
@@ -421,31 +417,6 @@
       flex-wrap:wrap;
       justify-content:center;
     }
-    .hero-scroll-cue{
-      display:inline-flex;
-      flex-direction:column;
-      align-items:center;
-      gap:.35rem;
-      margin-top:clamp(1.4rem,3vh,2.2rem);
-      font-family:var(--font-title);
-      font-size:.58rem;
-      letter-spacing:.24em;
-      text-transform:uppercase;
-      color:var(--muted);
-      opacity:.8;
-      transition:color .25s ease,opacity .25s ease;
-    }
-    .hero-scroll-cue:hover{color:var(--cyan);opacity:1}
-    .hero-scroll-line{
-      width:1px;height:28px;
-      background:linear-gradient(180deg,var(--cyan),transparent);
-      position:relative;overflow:hidden;
-    }
-    .hero-scroll-line::after{
-      content:"";position:absolute;left:0;top:-100%;width:100%;height:100%;
-      background:#fff;animation:scrollCueDrop 2s cubic-bezier(.4,0,.2,1) infinite;
-    }
-    @keyframes scrollCueDrop{0%{top:-100%}100%{top:100%}}
 
     /* ---------- ABOUT / WANTED CON 3D TILT ---------- */
     .about-grid{
@@ -797,10 +768,7 @@
     @media(max-width:1024px){
       .merch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .gallery-grid{grid-template-rows:repeat(2,185px)}
-      .hero-portrait-wrap{
-        width:min(96vw,960px);
-        max-height:clamp(380px,62svh,560px);
-      }
+      .hero-portrait-wrap{width:min(96vw,960px);max-height:clamp(380px,62svh,560px)}
     }
 
     @media(max-width:900px){
@@ -849,7 +817,6 @@
       .hero-front-title{font-size:clamp(2.5rem,12.5vw,4.2rem)}
       .hero-desc{margin-top:.42rem;font-size:clamp(.95rem,4.2vw,1.15rem);letter-spacing:.36em;text-indent:.36em}
       .hero-actions{margin-top:.85rem;gap:.7rem}
-      .hero-scroll-cue{display:none}
 
       .about-grid,.booking-grid{grid-template-columns:1fr}
       .wanted-poster{max-width:265px;margin:0 auto;padding:.9rem}
@@ -953,7 +920,6 @@
     </div>
   </div>
   <script>
-    // Script de arranque inmediato (no depende de librerías externas ni puede bloquearse)
     (function(){
       var loader = document.getElementById("loader");
       var path = document.getElementById("loaderPath");
@@ -990,7 +956,6 @@
         }
       }
       requestAnimationFrame(tick);
-      // Seguro absoluto: si cualquier cosa falla, abre la web en 1.8s
       setTimeout(closeLoader, 1800);
     })();
   </script>
@@ -1050,7 +1015,7 @@
   </div>
 
   <main id="top">
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (Limpio y directo con botón PLAY) -->
     <section class="hero">
       <div class="hero-ambient" aria-hidden="true"></div>
 
@@ -1061,8 +1026,9 @@
       <div class="hero-stage">
         <div class="hero-portrait-wrap" id="heroPortraitWrap">
           <picture class="hero-picture">
-            <source media="(min-width: 681px)" srcset="https://i.pinimg.com/736x/d5/a2/c7/d5a2c7a784effbe4e7bec25498f31fcb.jpg">
-            <img class="hero-portrait" src="https://i.pinimg.com/736x/6b/e8/3f/6be83f5a865c784d985cd173904a7e0f.jpg" alt="BASA.R3X — THE PROFESSOR" fetchpriority="high">
+            <!-- FOTO DE PORTADA PC Y MÓVIL (Se actualizan desde el Panel de Control o aquí directamente) -->
+            <source id="heroImgDesktop" media="(min-width: 681px)" srcset="https://i.pinimg.com/736x/d5/a2/c7/d5a2c7a784effbe4e7bec25498f31fcb.jpg">
+            <img id="heroImgMobile" class="hero-portrait" src="https://i.pinimg.com/736x/6b/e8/3f/6be83f5a865c784d985cd173904a7e0f.jpg" alt="BASA.R3X — THE PROFESSOR" fetchpriority="high">
           </picture>
           <div class="room-scanner" aria-hidden="true">
             <div class="room-scan-beam"></div>
@@ -1078,19 +1044,15 @@
           <div class="hero-actions">
             <a class="button primary magnetic" href="#music">
               <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><path d="M8 5v14l11-7z"/></svg>
-              ENTRAR AL ROOM · ESCUCHAR
+              PLAY
             </a>
             <a class="button magnetic" href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20cotizar%20un%20show%20/%20colaboraci%C3%B3n" target="_blank" rel="noopener">BOOKING DIRECTO</a>
           </div>
-          <a class="hero-scroll-cue" href="#music" aria-label="Deslizar hacia discografía">
-            <span>Escanear frecuencias</span>
-            <span class="hero-scroll-line" aria-hidden="true"></span>
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- MUSIC / DISCOGRAFÍA -->
+    <!-- MUSIC / DISCOGRAFÍA (Se genera desde el PANEL DE CONTROL) -->
     <section class="section catalog rule" id="music">
       <div class="shell">
         <div class="section-head single">
@@ -1106,43 +1068,8 @@
           </div>
         </div>
 
-        <div class="release-grid" id="releaseGrid" aria-label="Lanzamientos principales">
-          <article class="release-card">
-            <div class="release-card-head">
-              <p>Tu entrada al Room <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span></p>
-              <span class="release-badge">#01</span>
-            </div>
-            <div class="spotify-embed" data-spotify-id="58vJUewQbH5WeKNw5vu7eM" data-spotify-uri="spotify:track:58vJUewQbH5WeKNw5vu7eM"></div>
-          </article>
-          <article class="release-card">
-            <div class="release-card-head">
-              <p>Pulso urbano <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span></p>
-              <span class="release-badge">#02</span>
-            </div>
-            <div class="spotify-embed" data-spotify-id="6eIo3TSigNAQZmpnD9PfPe" data-spotify-uri="spotify:track:6eIo3TSigNAQZmpnD9PfPe"></div>
-          </article>
-          <article class="release-card">
-            <div class="release-card-head">
-              <p>Archivo clínico <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span></p>
-              <span class="release-badge">#03</span>
-            </div>
-            <div class="spotify-embed" data-spotify-id="3vXxJXa1j9QXFTyGSJa2Ru" data-spotify-uri="spotify:track:3vXxJXa1j9QXFTyGSJa2Ru"></div>
-          </article>
-          <article class="release-card">
-            <div class="release-card-head">
-              <p>Nuevo lanzamiento <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span></p>
-              <span class="release-badge">#04</span>
-            </div>
-            <div class="spotify-embed" data-spotify-id="6oqguLZVMIYaIT7PymSyuK" data-spotify-uri="spotify:track:6oqguLZVMIYaIT7PymSyuK"></div>
-          </article>
-        </div>
-
-        <div class="catalog-dots" id="catalogDots" aria-label="Indicador de pistas">
-          <button type="button" class="slider-dot active" data-index="0" aria-label="Pista 1"></button>
-          <button type="button" class="slider-dot" data-index="1" aria-label="Pista 2"></button>
-          <button type="button" class="slider-dot" data-index="2" aria-label="Pista 3"></button>
-          <button type="button" class="slider-dot" data-index="3" aria-label="Pista 4"></button>
-        </div>
+        <div class="release-grid" id="releaseGrid" aria-label="Lanzamientos principales"></div>
+        <div class="catalog-dots" id="catalogDots" aria-label="Indicador de pistas"></div>
 
         <div class="streaming-row" aria-label="Abrir BASA.R3X en plataformas de streaming">
           <a class="stream-btn" href="https://open.spotify.com/artist/1E9CtpREe6NTGcoIcusPlE" target="_blank" rel="noopener" aria-label="Abrir en Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.7.7 0 0 1-.96.23c-2.63-1.6-5.94-1.97-9.84-1.08a.7.7 0 1 1-.31-1.36c4.26-.97 7.94-.55 10.88 1.24.33.2.43.64.23.97Zm1.37-3.03a.88.88 0 0 1-1.2.3c-3.02-1.86-7.63-2.39-11.2-1.31a.88.88 0 1 1-.51-1.68c4.09-1.24 9.17-.64 12.62 1.49.42.25.55.79.29 1.2Zm.12-3.15C14.47 8.07 8.5 7.87 5.04 8.91a1.05 1.05 0 1 1-.61-2.01c3.98-1.2 10.58-.96 14.74 1.5a1.05 1.05 0 0 1-1.08 1.82Z"/></svg><span>Spotify</span></a>
@@ -1162,7 +1089,7 @@
             <h3>WANTED</h3>
             <p>TRIPULACIÓN CORAZÓN</p>
           </div>
-          <img class="wanted-img" src="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg" alt="Diego Guanoquiza, BASA.R3X" loading="lazy" decoding="async">
+          <img id="wantedImgEl" class="wanted-img" src="https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg" alt="Diego Guanoquiza, BASA.R3X" loading="lazy" decoding="async">
           <h4 class="wanted-name">DIEGO GUANOQUIZA</h4>
           <div class="wanted-bounty">
             <span>BOUNTY</span>
@@ -1191,7 +1118,7 @@
       </div>
     </section>
 
-    <!-- VISUALS -->
+    <!-- VISUALS (Se genera desde el PANEL DE CONTROL) -->
     <section class="section visuals rule" id="visuals">
       <div class="shell video-head">
         <div>
@@ -1203,58 +1130,25 @@
           <button class="icon-button" id="videoNext" type="button" aria-label="Video siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
         </div>
       </div>
-      <div class="video-rail shell" id="videoRail">
-        <button class="video-card" type="button" data-yt="Plt1SrU21qQ" data-title="BASA.R3X — Video Principal">
-          <img src="https://i.ytimg.com/vi/Plt1SrU21qQ/maxresdefault.jpg" alt="Video oficial de BASA.R3X" loading="lazy" decoding="async">
-          <span class="video-label"><span>01 · Video principal</span><span class="video-play-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
-        </button>
-        <button class="video-card" type="button" data-yt="bEUdUMIZ2J4" data-title="BASA.R3X — Archivo Audiovisual">
-          <img src="https://i.ytimg.com/vi/bEUdUMIZ2J4/maxresdefault.jpg" alt="Registro visual de BASA.R3X" loading="lazy" decoding="async">
-          <span class="video-label"><span>02 · Archivo audiovisual</span><span class="video-play-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
-        </button>
-        <button class="video-card" type="button" data-yt="eb-YBCDLS5k" data-title="BASA.R3X — Performance">
-          <img src="https://i.ytimg.com/vi/eb-YBCDLS5k/maxresdefault.jpg" alt="Performance de BASA.R3X" loading="lazy" decoding="async">
-          <span class="video-label"><span>03 · Performance</span><span class="video-play-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
-        </button>
-      </div>
+      <div class="video-rail shell" id="videoRail"></div>
       <div class="video-more shell">
-        <div class="slider-dots" id="videoDots" aria-label="Indicador de videos">
-          <button type="button" class="slider-dot active" data-index="0" aria-label="Video 1"></button>
-          <button type="button" class="slider-dot" data-index="1" aria-label="Video 2"></button>
-          <button type="button" class="slider-dot" data-index="2" aria-label="Video 3"></button>
-        </div>
+        <div class="slider-dots" id="videoDots" aria-label="Indicador de videos"></div>
         <a class="button primary magnetic" href="https://youtube.com/@basa.r3x" target="_blank" rel="noopener">Canal Oficial de YouTube <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
     </section>
 
-    <!-- SHOWS -->
+    <!-- SHOWS (Se genera desde el PANEL DE CONTROL) -->
     <section class="section rule" id="shows">
       <div class="shell shows-layout">
         <div class="shows-sticky">
           <span class="section-kicker">04 · Tour & Fechas</span>
           <h2 class="section-title split-title">Shows en vivo</h2>
         </div>
-        <div class="show-list">
-          <article class="show">
-            <time class="show-date" datetime="2026-11-11">11 NOV</time>
-            <div><h3>Guayaquil, Ecuador</h3><p>Fecha especial 11:11 · Lugar por anunciar</p></div>
-            <a class="button magnetic" href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20av%C3%ADsame%20cuando%20salgan%20entradas%20para%20el%2011%20de%20noviembre%20en%20Guayaquil" target="_blank" rel="noopener">Lista VIP</a>
-          </article>
-          <article class="show">
-            <time class="show-date" datetime="2026-12-07">07 DIC</time>
-            <div><h3>Cuenca, Ecuador</h3><p>Club nocturno / Show en vivo</p></div>
-            <a class="button primary magnetic" href="https://wa.me/593991980908?text=Hola%20BASA.R3X,%20quiero%20reservar%20entradas%20para%20el%20show%20del%207%20de%20diciembre%20en%20Cuenca" target="_blank" rel="noopener">Reservar</a>
-          </article>
-          <article class="show">
-            <time class="show-date">ENE</time>
-            <div><h3>Quito, Ecuador</h3><p>Lugar por anunciar</p></div>
-            <span class="status">Próximamente</span>
-          </article>
-        </div>
+        <div class="show-list" id="showList"></div>
       </div>
     </section>
 
-    <!-- MERCH -->
+    <!-- MERCH (Se genera desde el PANEL DE CONTROL) -->
     <section class="section merch rule" id="merch">
       <div class="shell">
         <div class="merch-head-flex">
@@ -1273,7 +1167,7 @@
       </div>
     </section>
 
-    <!-- GALLERY -->
+    <!-- GALLERY (Se genera desde el PANEL DE CONTROL) -->
     <section class="section rule" id="gallery">
       <div class="shell">
         <div class="gallery-head-bar">
@@ -1293,38 +1187,11 @@
           </div>
         </div>
 
-        <div class="gallery-grid" id="galleryGrid">
-          <figure class="gallery-item" data-index="0" tabindex="0" role="button" aria-label="Abrir foto 1: BASA.R3X en estudio">
-            <img src="https://i.pinimg.com/736x/f5/7c/f5/f57cf513675e19aea23d71738b2bb048.jpg" alt="BASA.R3X en estudio" loading="lazy" decoding="async">
-            <figcaption class="gallery-caption"><span>01 · En estudio</span><span>Ampliar ↗</span></figcaption>
-          </figure>
-          <figure class="gallery-item" data-index="1" tabindex="0" role="button" aria-label="Abrir foto 2: Retrato de BASA.R3X">
-            <img src="https://i.pinimg.com/736x/fe/d7/cc/fed7cc6e245357f4487d65c956dfe1ff.jpg" alt="Retrato de BASA.R3X" loading="lazy" decoding="async">
-            <figcaption class="gallery-caption"><span>02 · Retrato</span><span>Ampliar ↗</span></figcaption>
-          </figure>
-          <figure class="gallery-item" data-index="2" tabindex="0" role="button" aria-label="Abrir foto 3: Archivo visual BASA.R3X">
-            <img src="https://i.pinimg.com/736x/6a/85/f8/6a85f8fa6be9f3b767295d0078ed2e61.jpg" alt="Archivo visual BASA.R3X" loading="lazy" decoding="async">
-            <figcaption class="gallery-caption"><span>03 · Archivo visual</span><span>Ampliar ↗</span></figcaption>
-          </figure>
-          <figure class="gallery-item" data-index="3" tabindex="0" role="button" aria-label="Abrir foto 4: BASA.R3X en escena">
-            <img src="https://i.pinimg.com/736x/5a/eb/e5/5aebe52ce1aaa1b5aa7f70db04f4ec39.jpg" alt="BASA.R3X en escena" loading="lazy" decoding="async">
-            <figcaption class="gallery-caption"><span>04 · En escena</span><span>Ampliar ↗</span></figcaption>
-          </figure>
-          <figure class="gallery-item" data-index="4" tabindex="0" role="button" aria-label="Abrir foto 5: Detalle editorial BASA.R3X">
-            <img src="https://i.pinimg.com/736x/97/8e/17/978e17b41f9af5c48eb3f0c6f863ac83.jpg" alt="Detalle editorial BASA.R3X" loading="lazy" decoding="async">
-            <figcaption class="gallery-caption"><span>05 · Editorial</span><span>Ampliar ↗</span></figcaption>
-          </figure>
-        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
 
         <div class="gallery-footer-bar" id="galleryFooterBar">
           <span class="gallery-counter" id="galleryCounter">01 / 05</span>
-          <div class="slider-dots" id="galleryDots" aria-label="Indicador de fotos de galería">
-            <button type="button" class="slider-dot active" data-index="0" aria-label="Foto 1"></button>
-            <button type="button" class="slider-dot" data-index="1" aria-label="Foto 2"></button>
-            <button type="button" class="slider-dot" data-index="2" aria-label="Foto 3"></button>
-            <button type="button" class="slider-dot" data-index="3" aria-label="Foto 4"></button>
-            <button type="button" class="slider-dot" data-index="4" aria-label="Foto 5"></button>
-          </div>
+          <div class="slider-dots" id="galleryDots" aria-label="Indicador de fotos de galería"></div>
         </div>
       </div>
     </section>
@@ -1410,14 +1277,14 @@
       <button class="lightbox-arrow prev" id="lightboxPrev" type="button" aria-label="Imagen anterior">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg>
       </button>
-      <img class="lightbox-img" id="lightboxImg" src="https://i.pinimg.com/736x/f5/7c/f5/f57cf513675e19aea23d71738b2bb048.jpg" alt="Vista ampliada">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="Vista ampliada">
       <button class="lightbox-arrow next" id="lightboxNext" type="button" aria-label="Imagen siguiente">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg>
       </button>
     </div>
     <div class="lightbox-bottom">
       <div class="lightbox-dots" id="lightboxDots" aria-label="Indicadores de imagen"></div>
-      <p class="lightbox-caption" id="lightboxCaption">BASA.R3X en estudio</p>
+      <p class="lightbox-caption" id="lightboxCaption">BASA.R3X</p>
       <p class="lightbox-hint">Desliza para navegar · Pellizca o toca dos veces para zoom</p>
     </div>
   </div>
@@ -1447,9 +1314,145 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <script>
     (() => {
       "use strict";
+
+      /* =========================================================================
+         🛠️ PANEL DE CONTROL RÁPIDO (EDITA TUS TEMAS, VIDEOS, FOTOS Y MERCH AQUÍ)
+         ========================================================================= */
+
+      // 1. IMÁGENES PRINCIPALES (Portada PC, Portada Celular y Cartel Wanted)
+      const HERO_IMAGES = {
+        desktop: "https://i.pinimg.com/736x/d5/a2/c7/d5a2c7a784effbe4e7bec25498f31fcb.jpg",
+        mobile:  "https://i.pinimg.com/736x/6b/e8/3f/6be83f5a865c784d985cd173904a7e0f.jpg",
+        wanted:  "https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg"
+      };
+
+      // 2. CANCIONES DE SPOTIFY
+      // Para cambiar una canción: copia el link de Spotify (ej. https://open.spotify.com/track/6oqguLZVMIYaIT7PymSyuK)
+      // y pega solo el código final en "spotifyId". Puedes agregar o quitar bloques.
+      const TRACKS = [
+        { badge: "#01", label: "Tu entrada al Room", spotifyId: "58vJUewQbH5WeKNw5vu7eM" },
+        { badge: "#02", label: "Pulso urbano",       spotifyId: "6eIo3TSigNAQZmpnD9PfPe" },
+        { badge: "#03", label: "Archivo clínico",    spotifyId: "3vXxJXa1j9QXFTyGSJa2Ru" },
+        { badge: "#04", label: "Nuevo lanzamiento",  spotifyId: "6oqguLZVMIYaIT7PymSyuK" }
+      ];
+
+      // 3. VIDEOS DE YOUTUBE
+      // Para cambiar un video: copia el link de YouTube (ej. https://www.youtube.com/watch?v=Plt1SrU21qQ)
+      // y pega solo el código después de "v=" en "ytId". La portada se pone sola.
+      const VIDEOS = [
+        { ytId: "Plt1SrU21qQ", label: "01 · Video principal",     title: "BASA.R3X — Video Principal" },
+        { ytId: "bEUdUMIZ2J4", label: "02 · Archivo audiovisual", title: "BASA.R3X — Archivo Audiovisual" },
+        { ytId: "eb-YBCDLS5k", label: "03 · Performance",         title: "BASA.R3X — Performance" }
+      ];
+
+      // 4. FOTOS DE LA GALERÍA
+      // Reemplaza "src" por el link de tu foto nueva y "caption" por el texto que quieras.
+      const GALLERY = [
+        { src: "https://i.pinimg.com/736x/f5/7c/f5/f57cf513675e19aea23d71738b2bb048.jpg", caption: "01 · En estudio",     alt: "BASA.R3X en estudio" },
+        { src: "https://i.pinimg.com/736x/fe/d7/cc/fed7cc6e245357f4487d65c956dfe1ff.jpg", caption: "02 · Retrato",        alt: "Retrato de BASA.R3X" },
+        { src: "https://i.pinimg.com/736x/6a/85/f8/6a85f8fa6be9f3b767295d0078ed2e61.jpg", caption: "03 · Archivo visual", alt: "Archivo visual BASA.R3X" },
+        { src: "https://i.pinimg.com/736x/5a/eb/e5/5aebe52ce1aaa1b5aa7f70db04f4ec39.jpg", caption: "04 · En escena",      alt: "BASA.R3X en escena" },
+        { src: "https://i.pinimg.com/736x/97/8e/17/978e17b41f9af5c48eb3f0c6f863ac83.jpg", caption: "05 · Editorial",      alt: "Detalle editorial BASA.R3X" }
+      ];
+
+      // 5. FECHAS DE SHOWS EN VIVO
+      // Si " available: true ", sale botón de WhatsApp. Si " available: false ", sale texto gris.
+      const SHOWS = [
+        { date: "11 NOV", city: "Guayaquil, Ecuador", venue: "Fecha especial 11:11 · Lugar por anunciar", available: true,  btnText: "Lista VIP", primary: false },
+        { date: "07 DIC", city: "Cuenca, Ecuador",    venue: "Club nocturno / Show en vivo",              available: true,  btnText: "Reservar",  primary: true },
+        { date: "ENE",    city: "Quito, Ecuador",     venue: "Lugar por anunciar",                        available: false, statusText: "Próximamente" }
+      ];
+
+      // 6. PRODUCTOS DE MERCH & LAB
+      // Categorías disponibles: "oficial" | "gym" | "academy"
+      const MERCH = [
+        {
+          id: "album",
+          category: "oficial",
+          badge: "Música",
+          name: 'Álbum "Luna Veraniega"',
+          price: 20,
+          sizes: [],
+          images: [
+            "https://i.pinimg.com/736x/a3/02/09/a3020947cdafefd113c379b31ec50234.jpg",
+            "https://i.pinimg.com/736x/f5/a2/8d/f5a28d2bc8228d836786b9f9405081c5.jpg"
+          ]
+        },
+        {
+          id: "tee",
+          category: "oficial",
+          badge: "Merch Oficial",
+          name: "T-Shirt Tripulación Corazón",
+          price: 33,
+          sizes: ["S","M","L","XL"],
+          images: [
+            "https://i.pinimg.com/736x/7b/d0/61/7bd061407e5f37a36180d507b87fec97.jpg",
+            "https://i.pinimg.com/736x/e7/92/09/e79209dcc48d544f54146a237ba685c5.jpg",
+            "https://i.pinimg.com/736x/b0/ac/c0/b0acc072c0d91760232286586bb6eb66.jpg"
+          ]
+        },
+        {
+          id: "vip",
+          category: "oficial",
+          badge: "Tickets",
+          name: "Entrada VIP Tripulación Corazón",
+          price: 25,
+          sizes: ["General","VIP"],
+          prices: {"General":25,"VIP":50},
+          images: [
+            "https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg"
+          ]
+        },
+        {
+          id: "creatina",
+          category: "gym",
+          badge: "Gymrat Lab",
+          name: "Creatina Dragon Pharma",
+          price: 30,
+          sizes: ["300g","1Kg"],
+          prices: {"300g":30,"1Kg":60},
+          images: [
+            "https://i.pinimg.com/736x/a9/99/95/a99995e0ad21c04a4e9277fbe21155dd.jpg",
+            "https://i.pinimg.com/736x/5f/df/87/5fdf87129243de9893cef5b6e860a581.jpg",
+            "https://i.pinimg.com/736x/09/20/f8/0920f806dfb270f10ccf6353abb26294.jpg"
+          ]
+        },
+        {
+          id: "whey",
+          category: "gym",
+          badge: "Gymrat Lab",
+          name: "Proteína Whey 5kg",
+          price: 122,
+          sizes: [],
+          images: [
+            "https://i.pinimg.com/736x/cd/97/91/cd97911607349746776d4ba813dc7521.jpg",
+            "https://i.pinimg.com/736x/75/79/d5/7579d51267adac50803e4bf14937b6f9.jpg",
+            "https://i.pinimg.com/736x/09/20/f8/0920f806dfb270f10ccf6353abb26294.jpg"
+          ]
+        },
+        {
+          id: "ingles",
+          category: "academy",
+          badge: "The Professor",
+          name: "Clases de Inglés A1 - C1",
+          price: 10,
+          sizes: ["A1-C1","VIP","FLASH"],
+          prices: {"A1-C1":10,"VIP":25,"FLASH":15},
+          images: [
+            "https://i.pinimg.com/736x/70/fe/2d/70fe2da01c76539976a80287292a1a5c.jpg",
+            "https://i.pinimg.com/736x/09/20/f8/0920f806dfb270f10ccf6353abb26294.jpg"
+          ]
+        }
+      ];
+
+      /* =========================================================================
+         FIN DEL PANEL DE CONTROL — MOTOR INTERACTIVO DE LA PÁGINA
+         ========================================================================= */
+
       const $ = (selector, root = document) => root.querySelector(selector);
       const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
       const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1464,91 +1467,87 @@
         return container.scrollLeft + distanceFromContainerCenter(container, el);
       };
 
-      const MERCH = [
-        {
-          id:"album",
-          category:"oficial",
-          badge:"Música",
-          name:'Álbum "Luna Veraniega"',
-          price:20,
-          sizes:[],
-          images:[
-            "https://i.pinimg.com/736x/a3/02/09/a3020947cdafefd113c379b31ec50234.jpg",
-            "https://i.pinimg.com/736x/f5/a2/8d/f5a28d2bc8228d836786b9f9405081c5.jpg"
-          ]
-        },
-        {
-          id:"tee",
-          category:"oficial",
-          badge:"Merch Oficial",
-          name:'T-Shirt Tripulación Corazón',
-          price:33,
-          sizes:["S","M","L","XL"],
-          images:[
-            "https://i.pinimg.com/736x/7b/d0/61/7bd061407e5f37a36180d507b87fec97.jpg",
-            "https://i.pinimg.com/736x/e7/92/09/e79209dcc48d544f54146a237ba685c5.jpg",
-            "https://i.pinimg.com/736x/b0/ac/c0/b0acc072c0d91760232286586bb6eb66.jpg"
-          ]
-        },
-        {
-          id:"vip",
-          category:"oficial",
-          badge:"Tickets",
-          name:"Entrada VIP Tripulación Corazón",
-          price:25,
-          sizes:["General","VIP"],
-          prices:{"General":25,"VIP":50},
-          images:[
-            "https://i.pinimg.com/736x/6f/32/4f/6f324f7028835e6cbf379da101a2609f.jpg"
-          ]
-        },
-        {
-          id:"creatina",
-          category:"gym",
-          badge:"Gymrat Lab",
-          name:"Creatina Dragon Pharma",
-          price:30,
-          sizes:["300g","1Kg"],
-          prices:{"300g":30,"1Kg":60},
-          images:[
-            "https://i.pinimg.com/736x/a9/99/95/a99995e0ad21c04a4e9277fbe21155dd.jpg",
-            "https://i.pinimg.com/736x/5f/df/87/5fdf87129243de9893cef5b6e860a581.jpg",
-            "https://i.pinimg.com/736x/09/20/f8/0920f806dfb270f10ccf6353abb26294.jpg"
-          ]
-        },
-        {
-          id:"whey",
-          category:"gym",
-          badge:"Gymrat Lab",
-          name:"Proteína Whey 5kg",
-          price:122,
-          sizes:[],
-          images:[
-            "https://i.pinimg.com/736x/cd/97/91/cd97911607349746776d4ba813dc7521.jpg",
-            "https://i.pinimg.com/736x/75/79/d5/7579d51267adac50803e4bf14937b6f9.jpg",
-            "https://i.pinimg.com/736x/09/20/f8/0920f806dfb270f10ccf6353abb26294.jpg"
-          ]
-        },
-        {
-          id:"ingles",
-          category:"academy",
-          badge:"The Professor",
-          name:"Clases de Inglés A1 - C1",
-          price:10,
-          sizes:["A1-C1","VIP","FLASH"],
-          prices:{"A1-C1":10,"VIP":25,"FLASH":15},
-          images:[
-            "https://i.pinimg.com/736x/70/fe/2d/70fe2da01c76539976a80287292a1a5c.jpg",
-            "https://i.pinimg.com/736x/09/20/f8/0920f806dfb270f10ccf6353abb26294.jpg"
-          ]
-        }
-      ];
-
       let lenis = null;
       let smoke = null;
       let pageVisible = !document.hidden;
       let toastTimer = 0;
       let openLightboxWithItems = null;
+
+      function applyHeroAndWantedImages(){
+        const desk = $("#heroImgDesktop");
+        const mob = $("#heroImgMobile");
+        const wanted = $("#wantedImgEl");
+        if(desk && HERO_IMAGES.desktop) desk.srcset = HERO_IMAGES.desktop;
+        if(mob && HERO_IMAGES.mobile) mob.src = HERO_IMAGES.mobile;
+        if(wanted && HERO_IMAGES.wanted) wanted.src = HERO_IMAGES.wanted;
+      }
+
+      function renderTracksAndShows(){
+        const releaseGrid = $("#releaseGrid");
+        const catalogDots = $("#catalogDots");
+        if(releaseGrid){
+          releaseGrid.innerHTML = TRACKS.map(t => `
+            <article class="release-card">
+              <div class="release-card-head">
+                <p>${t.label} <span class="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span></p>
+                <span class="release-badge">${t.badge}</span>
+              </div>
+              <div class="spotify-embed" data-spotify-id="${t.spotifyId}" data-spotify-uri="spotify:track:${t.spotifyId}"></div>
+            </article>
+          `).join("");
+        }
+        if(catalogDots){
+          catalogDots.innerHTML = TRACKS.map((_, i) => `
+            <button type="button" class="slider-dot ${i===0?'active':''}" data-index="${i}" aria-label="Pista ${i+1}"></button>
+          `).join("");
+        }
+
+        const videoRail = $("#videoRail");
+        const videoDots = $("#videoDots");
+        if(videoRail){
+          videoRail.innerHTML = VIDEOS.map(v => `
+            <button class="video-card" type="button" data-yt="${v.ytId}" data-title="${v.title}">
+              <img src="https://i.ytimg.com/vi/${v.ytId}/maxresdefault.jpg" alt="${v.title}" loading="lazy" decoding="async">
+              <span class="video-label"><span>${v.label}</span><span class="video-play-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
+            </button>
+          `).join("");
+        }
+        if(videoDots){
+          videoDots.innerHTML = VIDEOS.map((_, i) => `
+            <button type="button" class="slider-dot ${i===0?'active':''}" data-index="${i}" aria-label="Video ${i+1}"></button>
+          `).join("");
+        }
+
+        const showList = $("#showList");
+        if(showList){
+          showList.innerHTML = SHOWS.map(s => `
+            <article class="show">
+              <time class="show-date">${s.date}</time>
+              <div><h3>${s.city}</h3><p>${s.venue}</p></div>
+              ${s.available
+                ? `<a class="button ${s.primary ? 'primary' : ''} magnetic" href="https://wa.me/593991980908?text=${encodeURIComponent(`Hola BASA.R3X, quiero info/reservar para el show de ${s.city} (${s.date})`)}" target="_blank" rel="noopener">${s.btnText}</a>`
+                : `<span class="status">${s.statusText || 'Próximamente'}</span>`
+              }
+            </article>
+          `).join("");
+        }
+
+        const galleryGrid = $("#galleryGrid");
+        const galleryDots = $("#galleryDots");
+        if(galleryGrid){
+          galleryGrid.innerHTML = GALLERY.map((g, i) => `
+            <figure class="gallery-item" data-index="${i}" tabindex="0" role="button" aria-label="Abrir foto ${i+1}: ${g.alt}">
+              <img src="${g.src}" alt="${g.alt}" loading="lazy" decoding="async">
+              <figcaption class="gallery-caption"><span>${g.caption}</span><span>Ampliar ↗</span></figcaption>
+            </figure>
+          `).join("");
+        }
+        if(galleryDots){
+          galleryDots.innerHTML = GALLERY.map((_, i) => `
+            <button type="button" class="slider-dot ${i===0?'active':''}" data-index="${i}" aria-label="Foto ${i+1}"></button>
+          `).join("");
+        }
+      }
 
       function showToast(msg){
         const toast = $("#toast");
@@ -1902,7 +1901,7 @@
           $("#cartItems").innerHTML = this.items.length
             ? this.items.map(item => `
               <li class="cart-item">
-                <img class="cart-thumb" src="${item.thumb || 'https://i.pinimg.com/736x/6b/e8/3f/6be83f5a865c784d985cd173904a7e0f.jpg'}" alt="${item.name}">
+                <img class="cart-thumb" src="${item.thumb || HERO_IMAGES.mobile}" alt="${item.name}">
                 <div>
                   <strong style="display:block;font-size:.95rem;line-height:1.2">${item.name}</strong>
                   <small style="display:block;color:var(--muted);margin-top:.15rem">${item.size?`${item.size} · `:""}$${item.price.toFixed(2)}</small>
@@ -2078,7 +2077,7 @@
             if(dist < minDist){ minDist = dist; activeIdx = i; }
           });
           galDots.forEach((dot, i) => dot.classList.toggle("active", i === activeIdx));
-          if(galCounter) galCounter.textContent = `0${activeIdx + 1} / 0${galleryItems.length}`;
+          if(galCounter) galCounter.textContent = `${String(activeIdx + 1).padStart(2,"0")} / ${String(galleryItems.length).padStart(2,"0")}`;
         };
 
         galleryGrid.addEventListener("scroll", updateGalleryIndicators, { passive: true });
@@ -2117,10 +2116,7 @@
         const lbNext = $("#lightboxNext");
         const lbZoomBtn = $("#lightboxZoomBtn");
 
-        const galleryPhotos = galleryItems.map(item => {
-          const img = $("img", item);
-          return { src: img.src, alt: img.alt };
-        });
+        const galleryPhotos = GALLERY.map(item => ({ src: item.src, alt: item.alt }));
 
         let activeCollection = galleryPhotos;
         let lbIndex = 0;
@@ -2400,6 +2396,8 @@
       });
 
       const bootApp = () => {
+        try { applyHeroAndWantedImages(); } catch(e){ console.error(e); }
+        try { renderTracksAndShows(); } catch(e){ console.error(e); }
         try { initGalleryAndLightbox(); } catch(e){ console.error(e); }
         try { renderMerch(); } catch(e){ console.error(e); }
         try { initWantedPoster(); } catch(e){ console.error(e); }
